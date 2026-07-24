@@ -122,7 +122,7 @@ export function UnifiedTimeline({
                     <div
                       key={`${property.id}-${dateKey}`}
                       className={cn(
-                        "relative min-h-[88px] border-b border-r border-border",
+                        "pointer-events-none relative min-h-[88px] border-b border-r border-border",
                         isToday ? "bg-blue-50/40" : "bg-background"
                       )}
                     />
@@ -140,9 +140,10 @@ export function UnifiedTimeline({
                     <button
                       key={booking.id}
                       type="button"
+                      title="Click to dispatch turnover cleaning"
                       onClick={() => onBookingClick?.(booking)}
                       className={cn(
-                        "z-[5] m-1 flex min-h-[52px] flex-col justify-center rounded-lg px-2 py-1.5 text-left text-[11px] font-medium shadow-md ring-1 transition-transform hover:scale-[1.02] hover:shadow-lg",
+                        "relative z-10 m-1 flex min-h-[52px] cursor-pointer flex-col justify-center rounded-lg px-2 py-1.5 text-left text-[11px] font-medium shadow-md ring-1 transition-transform hover:scale-[1.02] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         bookingStatusStyles[booking.status],
                         accent?.ring
                       )}

@@ -34,7 +34,7 @@ export function PendingTurnovers({
   });
 
   return (
-    <Card className="shadow-md">
+    <Card id="pending-turnovers" className="shadow-md">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -107,7 +107,7 @@ export function PendingTurnovers({
                   <Button
                     size="sm"
                     className="shrink-0 bg-[#25d366] text-white hover:bg-[#1ebe57]"
-                    disabled={isDispatching || task.status === "Dispatched"}
+                    disabled={isDispatching}
                     onClick={() => onDispatch(task.id)}
                   >
                     {isDispatching ? (
