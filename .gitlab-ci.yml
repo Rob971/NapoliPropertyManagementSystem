@@ -1,0 +1,50 @@
+image: node:22-bookworm
+
+stages:
+  - test
+  - deploy
+
+default:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+
+variables:
+  NEXT_TELEMETRY_DISABLED: "1"
+  # GitLab project pages are served at https://<namespace>.gitlab.io/<project>/
+  NEXT_PUBLIC_BASE_PATH: "/$CI_PROJECT_NAME"
+
+before_script:
+  - npm ci
+
+lint:
+  stage: test
+  script:
+    - npm run lint
+
+build:
+  stage: test
+  script:
+    - npm run build
+  artifacts:
+    when: on_success
+    paths:
+      - out/
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH
+
+pages:
+  stage: deploy
+  script:
+    - npm run build
+    - mv out public
+    - touch public/.nojekyll
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
