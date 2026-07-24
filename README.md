@@ -1,5 +1,8 @@
 # Napoli Property Management System (PoC)
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://rob971.github.io/NapoliPropertyManagementSystem/)
+[![Release](https://img.shields.io/github/v/release/Rob971/NapoliPropertyManagementSystem)](https://github.com/Rob971/NapoliPropertyManagementSystem/releases)
+
 A single-page Proof of Concept for the Napoli public service and local real estate agents, demonstrating:
 
 - **CIN compliance** — Codice Identificativo Nazionale tracking per property
