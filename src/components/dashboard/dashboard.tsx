@@ -50,6 +50,24 @@ export function Dashboard() {
     }, 1000);
   }, []);
 
+  const handleDialogOpenChange = useCallback(
+    (open: boolean) => {
+      setDialogOpen(open);
+
+      if (!open && activeTaskId) {
+        setTasks((current) =>
+          current.map((task) =>
+            task.id === activeTaskId && task.status === "Dispatched"
+              ? { ...task, status: "Pending" }
+              : task
+          )
+        );
+        setActiveTaskId(null);
+      }
+    },
+    [activeTaskId]
+  );
+
   const handleAccept = useCallback(() => {
     if (!activeTaskId) return;
 
@@ -85,6 +103,9 @@ export function Dashboard() {
     (booking: Booking) => {
       const linkedTask = tasks.find((task) => task.bookingId === booking.id);
       if (linkedTask && linkedTask.status !== "Confirmed") {
+        document
+          .getElementById("pending-turnovers")
+          ?.scrollIntoView({ behavior: "smooth", block: "nearest" });
         handleDispatch(linkedTask.id);
       }
     },
@@ -168,7 +189,7 @@ export function Dashboard() {
 
       <WhatsAppDispatchDialog
         open={dialogOpen}
-        onOpenChange={setDialogOpen}
+        onOpenChange={handleDialogOpenChange}
         property={activeProperty}
         onAccept={handleAccept}
         onDecline={handleDecline}
