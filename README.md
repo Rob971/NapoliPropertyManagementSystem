@@ -27,18 +27,30 @@ Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
 This project is configured for **GitLab CI/CD** with automatic deployment to GitLab Pages on the default branch (`main`).
 
-### Setup
+### Live URLs
 
-1. Push this repository to GitLab (mirror from GitHub or import the project).
-2. In GitLab, go to **Settings → General → Visibility** and ensure **Pages** is enabled.
-3. Merge to `main` — the pipeline runs lint, build, and deploy jobs from `.gitlab-ci.yml`.
-4. After a successful pipeline, open **Deploy → Pages** to get the live URL:
+| Platform | URL |
+|----------|-----|
+| **GitHub Pages** | https://rob971.github.io/NapoliPropertyManagementSystem/ |
+| **GitLab Pages** | https://rob971.gitlab.io/NapoliPropertyManagementSystem/ |
 
-   `https://<namespace>.gitlab.io/<project-name>/`
+GitHub Pages deploys automatically on every push to `main`. GitLab Pages deploys via `.gitlab-ci.yml` once the repository exists on GitLab.
 
-   Example: `https://rob971.gitlab.io/NapoliPropertyManagementSystem/`
+### One-time GitLab setup
 
-### Pipeline jobs
+1. Create a [GitLab personal access token](https://gitlab.com/-/user_settings/personal_access_tokens) with `api` and `write_repository` scopes.
+2. In GitHub, go to **Settings → Secrets and variables → Actions** and add `GITLAB_TOKEN`.
+3. Re-run the **Sync to GitLab Pages** workflow (or push to `main`).
+
+The sync workflow will create `gitlab.com/Rob971/NapoliPropertyManagementSystem`, push the code, and GitLab CI will publish Pages.
+
+### Manual GitLab import (alternative)
+
+1. Go to [GitLab New Project → Import from GitHub](https://gitlab.com/projects/new#import_project)
+2. Select `Rob971/NapoliPropertyManagementSystem`
+3. After import, the pipeline on `main` deploys automatically
+
+### Pipeline jobs (GitLab)
 
 | Job | Stage | Purpose |
 |-----|-------|---------|

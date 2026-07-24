@@ -1,0 +1,78 @@
+name: Sync to GitLab Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      gitlab_token:
+        description: GitLab personal access token (api + write_repository)
+        required: false
+        type: string
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GITLAB_HOST: gitlab.com
+      GITLAB_NAMESPACE: Rob971
+      GITLAB_PROJECT: NapoliPropertyManagementSystem
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve GitLab token
+        id: token
+        run: |
+          if [ -n "${{ inputs.gitlab_token }}" ]; then
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+            echo "::add-mask::${{ inputs.gitlab_token }}"
+            echo "GITLAB_TOKEN=${{ inputs.gitlab_token }}" >> "$GITHUB_ENV"
+          elif [ -n "${{ secrets.GITLAB_TOKEN }}" ]; then
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+            echo "GITLAB_TOKEN=${{ secrets.GITLAB_TOKEN }}" >> "$GITHUB_ENV"
+          else
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Skip without GitLab token
+        if: steps.token.outputs.has_token != 'true'
+        run: |
+          echo "No GITLAB_TOKEN configured. Add it as a repository secret to enable GitLab sync."
+          echo "GitLab CI will run automatically once the repo exists on GitLab."
+
+      - name: Create GitLab project if missing
+        if: steps.token.outputs.has_token == 'true'
+        run: |
+          STATUS=$(curl -sS -o /tmp/project.json -w "%{http_code}" \
+            -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+            "https://${GITLAB_HOST}/api/v4/projects/${GITLAB_NAMESPACE}%2F${GITLAB_PROJECT}")
+
+          if [ "$STATUS" = "404" ]; then
+            NAMESPACE_ID=$(curl -sS -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+              "https://${GITLAB_HOST}/api/v4/namespaces/${GITLAB_NAMESPACE}" \
+              | python3 -c 'import sys,json; print(json.load(sys.stdin)["id"])')
+
+            curl -sS -X POST \
+              -H "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+              "https://${GITLAB_HOST}/api/v4/projects" \
+              --data "name=${GITLAB_PROJECT}" \
+              --data "path=${GITLAB_PROJECT}" \
+              --data "namespace_id=${NAMESPACE_ID}" \
+              --data "visibility=public" \
+              --data "initialize_with_readme=false"
+          fi
+
+      - name: Push repository to GitLab
+        if: steps.token.outputs.has_token == 'true'
+        run: |
+          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@${GITLAB_HOST}/${GITLAB_NAMESPACE}/${GITLAB_PROJECT}.git" || true
+          git push gitlab HEAD:main --force
+
+      - name: Wait for GitLab Pages pipeline
+        if: steps.token.outputs.has_token == 'true'
+        run: |
+          echo "GitLab Pages URL: https://${GITLAB_NAMESPACE}.gitlab.io/${GITLAB_PROJECT}/"
+          echo "Check pipeline status at https://${GITLAB_HOST}/${GITLAB_NAMESPACE}/${GITLAB_PROJECT}/-/pipelines"
