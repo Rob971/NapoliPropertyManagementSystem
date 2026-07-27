@@ -86,7 +86,7 @@ Then open `http://localhost:3000/NapoliPropertyManagementSystem/` (adjust the pa
 
 ### Languages
 
-The UI supports **Italiano** and **English (UK)**. Use the language switcher (🇮🇹 IT / 🇬🇧 EN) in the header. Preference is saved to localStorage.
+The UI supports **Italiano** and **English (UK)**. **Italiano** is the default on first visit. Use the language switcher (🇮🇹 IT / 🇬🇧 EN) in the header. Preference is saved to localStorage.
 
 Translation files: `src/i18n/locales/it.json` and `src/i18n/locales/en-GB.json`
 
