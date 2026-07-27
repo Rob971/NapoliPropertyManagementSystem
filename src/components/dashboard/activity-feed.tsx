@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useTranslations } from "@/i18n/i18n-provider";
+import { formatTime } from "@/lib/dates";
 import type { ActivityEvent, ActivitySource } from "@/types";
 import {
   Building2,
@@ -28,28 +30,21 @@ const sourceConfig: Record<
   "CIN Registry": { icon: Building2, color: "text-blue-600", bg: "bg-blue-50" },
 };
 
-function formatTime(date: Date) {
-  return date.toLocaleTimeString("it-IT", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
 interface ActivityFeedProps {
   activities: ActivityEvent[];
 }
 
 export function ActivityFeed({ activities }: ActivityFeedProps) {
+  const { t, locale } = useTranslations();
+
   return (
     <Card id="activity-feed" data-tour="activity-feed" className="shadow-md">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
           <Radio className="size-4 animate-pulse text-sky-600" />
-          Live Activity Feed
+          {t("activity.title")}
         </CardTitle>
-        <CardDescription>
-          Simulated MVP integrations — updates as you interact
-        </CardDescription>
+        <CardDescription>{t("activity.description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="max-h-[280px] space-y-2 overflow-y-auto pr-1">
@@ -80,10 +75,12 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
                       {event.source}
                     </p>
                     <span className="shrink-0 text-[10px] text-muted-foreground">
-                      {formatTime(event.timestamp)}
+                      {formatTime(event.timestamp, locale)}
                     </span>
                   </div>
-                  <p className="mt-0.5 text-sm leading-snug">{event.message}</p>
+                  <p className="mt-0.5 text-sm leading-snug">
+                    {t(event.messageKey, event.messageParams)}
+                  </p>
                 </div>
               </div>
             );

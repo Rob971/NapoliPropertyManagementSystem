@@ -2,6 +2,8 @@
 
 import { Bell, Calendar, PlayCircle, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { useTranslations } from "@/i18n/i18n-provider";
 import { formatLongDate } from "@/lib/dates";
 
 interface HeaderProps {
@@ -10,23 +12,25 @@ interface HeaderProps {
 }
 
 export function Header({ today, onStartTour }: HeaderProps) {
+  const { t, locale } = useTranslations();
+
   return (
     <header className="flex items-center justify-between border-b border-border bg-background/80 px-6 py-4 backdrop-blur-sm">
       <div>
         <div className="flex items-center gap-2">
           <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Unified Operations
+            {t("header.operations")}
           </p>
           <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-[10px] font-semibold text-indigo-700">
-            MVP Preview
+            {t("header.mvpPreview")}
           </span>
         </div>
-        <h1 className="text-xl font-semibold tracking-tight">
-          Property & Reservation Timeline
-        </h1>
+        <h1 className="text-xl font-semibold tracking-tight">{t("header.title")}</h1>
       </div>
 
       <div className="flex items-center gap-3">
+        <LanguageSwitcher className="hidden sm:flex" />
+
         {onStartTour && (
           <Button
             size="sm"
@@ -35,19 +39,19 @@ export function Header({ today, onStartTour }: HeaderProps) {
             onClick={onStartTour}
           >
             <PlayCircle className="size-4" />
-            Guided Tour
+            {t("header.guidedTour")}
           </Button>
         )}
 
         <div className="hidden items-center gap-2 rounded-lg border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground md:flex">
           <Calendar className="size-4" />
-          <span>{formatLongDate(today)}</span>
+          <span>{formatLongDate(today, locale)}</span>
         </div>
 
         <button
           type="button"
           className="relative rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          aria-label="Notifications"
+          aria-label={t("common.notifications")}
         >
           <Bell className="size-4" />
           <span className="absolute right-1.5 top-1.5 size-2 rounded-full bg-rose-500" />
@@ -58,8 +62,8 @@ export function Header({ today, onStartTour }: HeaderProps) {
             <UserCircle2 className="size-5" />
           </div>
           <div className="hidden sm:block">
-            <p className="text-sm font-medium">Napoli Admin</p>
-            <p className="text-xs text-muted-foreground">Municipal Operator</p>
+            <p className="text-sm font-medium">{t("header.adminName")}</p>
+            <p className="text-xs text-muted-foreground">{t("header.adminRole")}</p>
           </div>
         </div>
       </div>

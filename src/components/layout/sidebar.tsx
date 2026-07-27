@@ -7,16 +7,19 @@ import {
   Truck,
   Building2,
 } from "lucide-react";
+import { useTranslations } from "@/i18n/i18n-provider";
 import { cn } from "@/lib/utils";
 
-const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, active: true },
-  { label: "Calendar", icon: CalendarDays, active: false },
-  { label: "Suppliers", icon: Truck, active: false },
-  { label: "Settings", icon: Settings, active: false },
-];
+const navKeys = [
+  { key: "nav.dashboard", icon: LayoutDashboard, active: true },
+  { key: "nav.calendar", icon: CalendarDays, active: false },
+  { key: "nav.suppliers", icon: Truck, active: false },
+  { key: "nav.settings", icon: Settings, active: false },
+] as const;
 
 export function Sidebar() {
+  const { t } = useTranslations();
+
   return (
     <aside className="flex h-full w-64 shrink-0 flex-col border-r border-border bg-sidebar text-sidebar-foreground">
       <div className="flex items-center gap-3 border-b border-sidebar-border px-5 py-5">
@@ -24,15 +27,15 @@ export function Sidebar() {
           <Building2 className="size-5" />
         </div>
         <div>
-          <p className="text-sm font-semibold tracking-tight">Napoli PMS</p>
-          <p className="text-xs text-muted-foreground">Comune di Napoli</p>
+          <p className="text-sm font-semibold tracking-tight">{t("sidebar.brand")}</p>
+          <p className="text-xs text-muted-foreground">{t("sidebar.subtitle")}</p>
         </div>
       </div>
 
       <nav className="flex flex-1 flex-col gap-1 p-3">
-        {navItems.map((item) => (
+        {navKeys.map((item) => (
           <button
-            key={item.label}
+            key={item.key}
             type="button"
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
@@ -42,7 +45,7 @@ export function Sidebar() {
             )}
           >
             <item.icon className="size-4" />
-            {item.label}
+            {t(item.key)}
           </button>
         ))}
       </nav>
@@ -50,15 +53,15 @@ export function Sidebar() {
       <div className="border-t border-sidebar-border p-4">
         <div className="rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 p-4 text-white shadow-lg">
           <p className="text-xs font-medium uppercase tracking-wider text-blue-100">
-            Compliance
+            {t("sidebar.compliance")}
           </p>
-          <p className="mt-1 text-sm font-semibold">CIN Registry Active</p>
+          <p className="mt-1 text-sm font-semibold">{t("sidebar.cinActive")}</p>
           <p className="mt-2 text-xs leading-relaxed text-blue-100/90">
-            All 3 properties verified with valid Codice Identificativo Nazionale.
+            {t("sidebar.cinDescription")}
           </p>
         </div>
         <p className="mt-3 text-center text-[10px] text-muted-foreground">
-          Interactive MVP preview — scenarios run on demand
+          {t("sidebar.mvpHint")}
         </p>
       </div>
     </aside>

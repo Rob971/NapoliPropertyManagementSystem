@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useTranslations } from "@/i18n/i18n-provider";
 import type { Booking, CleaningTask, Property } from "@/types";
 import { CheckCircle2, Loader2, MessageSquare, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -27,11 +28,15 @@ export function PendingTurnovers({
   dispatchingTaskId,
   onDispatch,
 }: PendingTurnoversProps) {
+  const { t } = useTranslations();
+
   const pendingTasks = [...tasks].sort((a, b) => {
     if (a.status === "Confirmed" && b.status !== "Confirmed") return 1;
     if (a.status !== "Confirmed" && b.status === "Confirmed") return -1;
     return 0;
   });
+
+  const activeCount = pendingTasks.filter((item) => item.status !== "Confirmed").length;
 
   return (
     <Card id="pending-turnovers" data-tour="pending-turnovers" className="shadow-md">
@@ -40,22 +45,20 @@ export function PendingTurnovers({
           <div>
             <CardTitle className="flex items-center gap-2">
               <Sparkles className="size-4 text-amber-500" />
-              Pending Turnovers
+              {t("turnovers.title")}
             </CardTitle>
-            <CardDescription>
-              Checkout events requiring cleaner dispatch via WhatsApp automation
-            </CardDescription>
+            <CardDescription>{t("turnovers.description")}</CardDescription>
           </div>
           <div className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
-            {pendingTasks.filter((t) => t.status !== "Confirmed").length} active
+            {t("turnovers.active", { count: activeCount })}
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        {pendingTasks.filter((t) => t.status !== "Confirmed").length === 0 ? (
+        {activeCount === 0 ? (
           <div className="flex items-center gap-3 rounded-xl border border-dashed border-emerald-200 bg-emerald-50/50 p-4 text-sm text-emerald-800">
             <CheckCircle2 className="size-5 shrink-0" />
-            All turnovers confirmed. Cleaning crew is fully scheduled.
+            {t("turnovers.allConfirmed")}
           </div>
         ) : (
           pendingTasks.map((task) => {
@@ -82,14 +85,14 @@ export function PendingTurnovers({
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    CIN: {property?.cin}
+                    {t("common.cin")}: {property?.cin}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Guest checkout:{" "}
+                    {t("turnovers.guestCheckout")}{" "}
                     <span className="font-medium text-foreground">
                       {booking?.guestName ?? "—"}
                     </span>{" "}
-                    · {task.date} · {task.type}
+                    · {task.date} · {t(`taskType.${task.type}`)}
                   </p>
                   <span
                     className={cn(
@@ -99,7 +102,7 @@ export function PendingTurnovers({
                       task.status === "Confirmed" && "bg-emerald-100 text-emerald-800"
                     )}
                   >
-                    {task.status}
+                    {t(`taskStatus.${task.status}`)}
                   </span>
                 </div>
 
@@ -113,12 +116,12 @@ export function PendingTurnovers({
                     {isDispatching ? (
                       <>
                         <Loader2 className="animate-spin" />
-                        Dispatching…
+                        {t("turnovers.dispatching")}
                       </>
                     ) : (
                       <>
                         <MessageSquare className="size-4" />
-                        Simulate Automated Dispatch
+                        {t("turnovers.simulateDispatch")}
                       </>
                     )}
                   </Button>

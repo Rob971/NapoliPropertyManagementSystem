@@ -3,7 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { createMockData } from "@/data/mock-data";
-import { getInitialActivities } from "@/data/demo-scenarios";
+import { useTranslations } from "@/i18n/i18n-provider";
 import { addDays, startOfDay, toDateKey } from "@/lib/dates";
 import type {
   ActivityEvent,
@@ -16,13 +16,34 @@ function createActivityId() {
   return `act-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
+function createInitialActivities(): ActivityEvent[] {
+  const now = new Date();
+  return [
+    {
+      id: "act-init-1",
+      source: "System",
+      type: "info",
+      messageKey: "activityMessages.initPreview",
+      timestamp: now,
+    },
+    {
+      id: "act-init-2",
+      source: "CIN Registry",
+      type: "compliance",
+      messageKey: "activityMessages.initCin",
+      timestamp: new Date(now.getTime() - 60000),
+    },
+  ];
+}
+
 export function useDemoState() {
+  const { t } = useTranslations();
   const today = useMemo(() => startOfDay(new Date()), []);
   const initialData = useMemo(() => createMockData(today), [today]);
 
   const [bookings, setBookings] = useState<Booking[]>(initialData.bookings);
   const [tasks, setTasks] = useState<CleaningTask[]>(initialData.tasks);
-  const [activities, setActivities] = useState<ActivityEvent[]>(getInitialActivities);
+  const [activities, setActivities] = useState<ActivityEvent[]>(createInitialActivities);
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
   const [detailPanelOpen, setDetailPanelOpen] = useState(false);
   const [demoPanelOpen, setDemoPanelOpen] = useState(true);
@@ -39,7 +60,7 @@ export function useDemoState() {
     ? properties.find((p) => p.id === selectedBooking.propertyId) ?? null
     : null;
   const selectedTask = selectedBooking
-    ? tasks.find((t) => t.bookingId === selectedBooking.id) ?? null
+    ? tasks.find((task) => task.bookingId === selectedBooking.id) ?? null
     : null;
 
   const activeTask = tasks.find((task) => task.id === activeTaskId) ?? null;
@@ -66,7 +87,7 @@ export function useDemoState() {
     const fresh = createMockData(today);
     setBookings(fresh.bookings);
     setTasks(fresh.tasks);
-    setActivities(getInitialActivities());
+    setActivities(createInitialActivities());
     setSelectedBookingId(null);
     setDetailPanelOpen(false);
     setTourStep(null);
@@ -75,22 +96,23 @@ export function useDemoState() {
     setActiveTaskId(null);
     setDispatchingTaskId(null);
 
-    toast.info("Demo reset", {
-      description: "All data restored to the initial presentation state.",
+    toast.info(t("toast.demoReset.title"), {
+      description: t("toast.demoReset.description"),
     });
-  }, [today]);
+  }, [t, today]);
 
   const handleDispatch = useCallback(
     (taskId: string) => {
-      const task = tasks.find((t) => t.id === taskId);
-      const property = properties.find((p) => p.id === task?.propertyId);
+      const task = tasks.find((item) => item.id === taskId);
+      const property = properties.find((item) => item.id === task?.propertyId);
+      const propertyName = property?.name ?? t("common.propertyFallback");
 
       setDispatchingTaskId(taskId);
 
       window.setTimeout(() => {
         setTasks((current) =>
-          current.map((t) =>
-            t.id === taskId ? { ...t, status: "Dispatched" } : t
+          current.map((item) =>
+            item.id === taskId ? { ...item, status: "Dispatched" } : item
           )
         );
         setDispatchingTaskId(null);
@@ -100,11 +122,12 @@ export function useDemoState() {
         addActivity({
           source: "WhatsApp",
           type: "dispatch",
-          message: `Dispatch sent to Pulizie Napoli for ${property?.name ?? "property"}`,
+          messageKey: "activityMessages.dispatchSent",
+          messageParams: { property: propertyName },
         });
       }, 1000);
     },
-    [addActivity, properties, tasks]
+    [addActivity, properties, t, tasks]
   );
 
   const handleDialogOpenChange = useCallback(
@@ -128,6 +151,8 @@ export function useDemoState() {
   const handleAccept = useCallback(() => {
     if (!activeTaskId) return;
 
+    const propertyName = activeProperty?.name ?? t("common.propertyFallback");
+
     setTasks((current) =>
       current.map((task) =>
         task.id === activeTaskId ? { ...task, status: "Confirmed" } : task
@@ -138,17 +163,20 @@ export function useDemoState() {
     addActivity({
       source: "WhatsApp",
       type: "dispatch",
-      message: `Cleaner confirmed for ${activeProperty?.name ?? "property"}`,
+      messageKey: "activityMessages.cleanerConfirmed",
+      messageParams: { property: propertyName },
     });
 
-    toast.success("Cleaner confirmed via WhatsApp", {
-      description: `${activeProperty?.name} turnover is now scheduled.`,
+    toast.success(t("toast.cleanerConfirmed.title"), {
+      description: t("toast.cleanerConfirmed.description", { property: propertyName }),
       className: "border-emerald-200 bg-emerald-50 text-emerald-900",
     });
-  }, [activeTaskId, activeProperty?.name, addActivity]);
+  }, [activeProperty?.name, activeTaskId, addActivity, t]);
 
   const handleDecline = useCallback(() => {
     if (!activeTaskId) return;
+
+    const propertyName = activeProperty?.name ?? t("common.propertyFallback");
 
     setTasks((current) =>
       current.map((task) =>
@@ -160,13 +188,14 @@ export function useDemoState() {
     addActivity({
       source: "WhatsApp",
       type: "dispatch",
-      message: `Supplier declined job for ${activeProperty?.name ?? "property"}`,
+      messageKey: "activityMessages.supplierDeclined",
+      messageParams: { property: propertyName },
     });
 
-    toast.error("Supplier declined the job", {
-      description: "Task returned to pending for manual reassignment.",
+    toast.error(t("toast.supplierDeclined.title"), {
+      description: t("toast.supplierDeclined.description"),
     });
-  }, [activeTaskId, activeProperty?.name, addActivity]);
+  }, [activeProperty?.name, activeTaskId, addActivity, t]);
 
   const openBookingDetail = useCallback((booking: Booking) => {
     setSelectedBookingId(booking.id);
@@ -204,11 +233,10 @@ export function useDemoState() {
           addActivity({
             source: "Airbnb",
             type: "booking",
-            message:
-              "New reservation synced: Luca Ferrari → Centro Storico Flat (5 nights)",
+            messageKey: "activityMessages.airbnbBooking",
           });
-          toast.success("Airbnb sync complete", {
-            description: "Luca Ferrari booked Centro Storico Flat",
+          toast.success(t("toast.airbnbSync.title"), {
+            description: t("toast.airbnbSync.description"),
           });
           document
             .getElementById("timeline")
@@ -223,8 +251,8 @@ export function useDemoState() {
             )
           );
           setTasks((prev) =>
-            prev.map((t) =>
-              t.id === "task-1" ? { ...t, status: "Pending" as const } : t
+            prev.map((item) =>
+              item.id === "task-1" ? { ...item, status: "Pending" as const } : item
             )
           );
           const booking = bookings.find((b) => b.id === "book-1");
@@ -235,11 +263,10 @@ export function useDemoState() {
           addActivity({
             source: "System",
             type: "checkout",
-            message:
-              "Marco Bianchi checked out of Villa Posillipo — turnover required by 15:00",
+            messageKey: "activityMessages.guestCheckout",
           });
-          toast.info("Guest checkout detected", {
-            description: "Marco Bianchi departed Villa Posillipo at 10:00",
+          toast.info(t("toast.guestCheckout.title"), {
+            description: t("toast.guestCheckout.description"),
           });
           window.setTimeout(() => {
             document
@@ -253,12 +280,10 @@ export function useDemoState() {
           addActivity({
             source: "Alloggiati Web",
             type: "sync",
-            message:
-              "Guest registry submitted to Questura — Elena Russo (Villa Posillipo)",
+            messageKey: "activityMessages.alloggiatiSync",
           });
-          toast.success("Alloggiati Web synced", {
-            description:
-              "Guest data submitted to the Italian police registry portal",
+          toast.success(t("toast.alloggiatiSync.title"), {
+            description: t("toast.alloggiatiSync.description"),
           });
           break;
         }
@@ -268,19 +293,20 @@ export function useDemoState() {
           addActivity({
             source: "CIN Registry",
             type: "compliance",
-            message: `CIN validated: ${property.name} — ${property.cin} ✓`,
+            messageKey: "activityMessages.cinValidated",
+            messageParams: { property: property.name, cin: property.cin },
           });
-          toast.success("CIN compliance verified", {
-            description: `${property.name} — registry status: ACTIVE`,
+          toast.success(t("toast.cinVerified.title"), {
+            description: t("toast.cinVerified.description", { property: property.name }),
           });
           break;
         }
 
         case "auto-dispatch": {
-          const nextPending = tasks.find((t) => t.status === "Pending");
+          const nextPending = tasks.find((item) => item.status === "Pending");
           if (!nextPending) {
-            toast.warning("No pending turnovers", {
-              description: "Reset the demo or run Guest Checkout first.",
+            toast.warning(t("toast.noPendingTurnovers.title"), {
+              description: t("toast.noPendingTurnovers.description"),
             });
             return;
           }
@@ -302,6 +328,7 @@ export function useDemoState() {
       openBookingDetail,
       properties,
       resetDemo,
+      t,
       tasks,
       today,
     ]
@@ -323,8 +350,8 @@ export function useDemoState() {
     setTourStep(null);
   }, []);
 
-  const confirmedCount = tasks.filter((t) => t.status === "Confirmed").length;
-  const pendingCount = tasks.filter((t) => t.status === "Pending").length;
+  const confirmedCount = tasks.filter((item) => item.status === "Confirmed").length;
+  const pendingCount = tasks.filter((item) => item.status === "Pending").length;
 
   return {
     today,

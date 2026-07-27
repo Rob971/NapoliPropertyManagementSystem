@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "Napoli PMS | Sistema di Gestione Immobiliare",
+    "description": "Proof of concept per la gestione immobiliare del servizio pubblico napoletano — conformità CIN, calendario unificato e dispatch pulizie via WhatsApp."
+  },
+  "common": {
+    "today": "Oggi",
+    "cin": "CIN",
+    "mvp": "MVP",
+    "notifications": "Notifiche",
+    "collapsePanel": "Comprimi pannello",
+    "expandPanel": "Espandi pannello",
+    "propertyFallback": "proprietà"
+  },
+  "language": {
+    "label": "Lingua",
+    "switchTo": "Cambia lingua"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "calendar": "Calendario",
+    "suppliers": "Fornitori",
+    "settings": "Impostazioni"
+  },
+  "sidebar": {
+    "brand": "Napoli PMS",
+    "subtitle": "Comune di Napoli",
+    "compliance": "Conformità",
+    "cinActive": "Registro CIN Attivo",
+    "cinDescription": "Tutte e 3 le proprietà verificate con Codice Identificativo Nazionale valido.",
+    "mvpHint": "Anteprima MVP interattiva — scenari on demand"
+  },
+  "header": {
+    "operations": "Operazioni Unificate",
+    "mvpPreview": "Anteprima MVP",
+    "title": "Timeline Proprietà e Prenotazioni",
+    "guidedTour": "Tour Guidato",
+    "adminName": "Admin Napoli",
+    "adminRole": "Operatore Comunale"
+  },
+  "kpi": {
+    "activeProperties": "Proprietà Attive",
+    "activePropertiesDesc": "Inventario conforme CIN",
+    "liveBookings": "Prenotazioni Attive",
+    "liveBookingsDesc": "Nella finestra di 14 giorni",
+    "turnoversConfirmed": "Turnover Confermati",
+    "pendingDispatch": "{count} in attesa di dispatch"
+  },
+  "timeline": {
+    "title": "Calendario Unificato",
+    "subtitle": "Clicca una prenotazione per i dettagli — vista 14 giorni su tutte le proprietà",
+    "propertyCin": "Proprietà / CIN",
+    "bookingTitle": "Clicca per vedere i dettagli della prenotazione",
+    "legend": "Legenda"
+  },
+  "bookingStatus": {
+    "confirmed": "Confermata",
+    "pending": "In attesa",
+    "checked-in": "Check-in effettuato",
+    "checked-out": "Check-out effettuato"
+  },
+  "taskStatus": {
+    "Pending": "In attesa",
+    "Dispatched": "Inviato",
+    "Confirmed": "Confermato"
+  },
+  "taskType": {
+    "Turnover Cleaning": "Pulizia Turnover"
+  },
+  "turnovers": {
+    "title": "Turnover in Attesa",
+    "description": "Check-out che richiedono dispatch pulizie via automazione WhatsApp",
+    "active": "{count} attivi",
+    "allConfirmed": "Tutti i turnover confermati. Squadra pulizie completamente programmata.",
+    "guestCheckout": "Check-out ospite:",
+    "dispatching": "Invio in corso…",
+    "simulateDispatch": "Simula Dispatch Automatizzato"
+  },
+  "demo": {
+    "title": "Anteprima MVP Interattiva",
+    "description": "Attiva scenari on demand per vedere come funzionerà il primo MVP",
+    "guidedTour": "Tour Guidato",
+    "mvpLabel": "MVP: {feature}"
+  },
+  "scenarios": {
+    "new-airbnb-booking": {
+      "title": "Nuova Prenotazione Airbnb",
+      "description": "Simula una prenotazione sincronizzata da Airbnb nel calendario.",
+      "feature": "Integrazione API Airbnb"
+    },
+    "guest-checkout": {
+      "title": "Check-out Ospite Oggi",
+      "description": "Registra la partenza di un ospite e crea un task turnover in attesa.",
+      "feature": "Automazione check-out"
+    },
+    "alloggiati-sync": {
+      "title": "Sync Alloggiati Web",
+      "description": "Invia i dati ospiti al portale registro polizia italiano.",
+      "feature": "API Alloggiati Web"
+    },
+    "cin-validation": {
+      "title": "Verifica Conformità CIN",
+      "description": "Valida il codice CIN della proprietà contro il registro nazionale.",
+      "feature": "API Registro CIN"
+    },
+    "auto-dispatch": {
+      "title": "Auto-Dispatch Pulizie",
+      "description": "Attiva il dispatch WhatsApp per il prossimo turnover in attesa.",
+      "feature": "API WhatsApp Business"
+    },
+    "reset-demo": {
+      "title": "Reset Demo",
+      "description": "Ripristina tutti i dati allo stato iniziale di presentazione.",
+      "feature": "Nuova sessione demo"
+    }
+  },
+  "activity": {
+    "title": "Feed Attività Live",
+    "description": "Integrazioni MVP simulate — si aggiorna mentre interagisci"
+  },
+  "bookingDetail": {
+    "title": "Dettaglio Prenotazione",
+    "guest": "Ospite",
+    "stay": "Soggiorno",
+    "propertyCompliance": "Proprietà e Conformità",
+    "cinVerified": "Registro CIN — Verificato",
+    "turnoverCleaning": "Pulizia Turnover",
+    "scheduled": "Programmato: {date}",
+    "dispatching": "Invio in corso…",
+    "simulateDispatch": "Simula Dispatch WhatsApp",
+    "mvpNote": "Nell'MVP a pagamento, questo pannello si collega alle API live Airbnb, Alloggiati Web e WhatsApp."
+  },
+  "whatsapp": {
+    "title": "Pulizie Napoli — WhatsApp",
+    "subtitle": "Dispatch fornitore automatizzato",
+    "message": "🤖 Sistema: Turnover domani presso {property}. Check-out 10:00, prossimo Check-in 15:00. Puoi accettare questo lavoro?",
+    "timestamp": "Adesso · Automatizzato",
+    "accept": "✅ Accetta Lavoro",
+    "decline": "❌ Non Posso"
+  },
+  "tour": {
+    "step": "Passo {current} di {total}",
+    "skip": "Salta",
+    "next": "Avanti",
+    "startExploring": "Inizia a Esplorare",
+    "welcome": {
+      "title": "Benvenuto nell'Anteprima MVP",
+      "description": "Questa demo interattiva mostra come apparirà e funzionerà il primo MVP. Esplora scenari on demand — nessun backend richiesto."
+    },
+    "kpis": {
+      "title": "Operazioni a Colpo d'Occhio",
+      "description": "Le card KPI tracciano proprietà, prenotazioni attive e turnover confermati — aggiornati in tempo reale."
+    },
+    "timeline": {
+      "title": "Timeline Prenotazioni Unificata",
+      "description": "La griglia a 14 giorni copre tutte le proprietà. Clicca un blocco prenotazione per dettagli, conformità CIN e task pulizia."
+    },
+    "activity": {
+      "title": "Feed Attività Live",
+      "description": "Ogni evento API simulato appare qui — sync Airbnb, invii Alloggiati, dispatch WhatsApp e verifiche CIN."
+    },
+    "turnovers": {
+      "title": "Dispatch Pulizie Automatizzato",
+      "description": "I turnover in attesa attivano messaggi WhatsApp ai fornitori. Accetta o rifiuta per vedere il flusso aggiornarsi istantaneamente."
+    },
+    "scenarios": {
+      "title": "Provalo Tu Stesso",
+      "description": "Usa i pulsanti scenario per simulare integrazioni MVP on demand. Così gli stakeholder valuteranno il prodotto."
+    }
+  },
+  "toast": {
+    "demoReset": {
+      "title": "Demo resettata",
+      "description": "Tutti i dati ripristinati allo stato iniziale di presentazione."
+    },
+    "cleanerConfirmed": {
+      "title": "Pulizie confermate via WhatsApp",
+      "description": "Turnover {property} ora programmato."
+    },
+    "supplierDeclined": {
+      "title": "Fornitore ha rifiutato il lavoro",
+      "description": "Task riportato in attesa per riassegnazione manuale."
+    },
+    "airbnbSync": {
+      "title": "Sync Airbnb completata",
+      "description": "Luca Ferrari ha prenotato Centro Storico Flat"
+    },
+    "guestCheckout": {
+      "title": "Check-out ospite rilevato",
+      "description": "Marco Bianchi ha lasciato Villa Posillipo alle 10:00"
+    },
+    "alloggiatiSync": {
+      "title": "Alloggiati Web sincronizzato",
+      "description": "Dati ospiti inviati al portale registro polizia italiano"
+    },
+    "cinVerified": {
+      "title": "Conformità CIN verificata",
+      "description": "{property} — stato registro: ATTIVO"
+    },
+    "noPendingTurnovers": {
+      "title": "Nessun turnover in attesa",
+      "description": "Resetta la demo o esegui Check-out Ospite prima."
+    }
+  },
+  "activityMessages": {
+    "initPreview": "Anteprima MVP interattiva caricata — prova gli scenari on demand",
+    "initCin": "3 proprietà verificate con Codice Identificativo Nazionale valido",
+    "dispatchSent": "Dispatch inviato a Pulizie Napoli per {property}",
+    "cleanerConfirmed": "Pulizie confermate per {property}",
+    "supplierDeclined": "Fornitore ha rifiutato il lavoro per {property}",
+    "airbnbBooking": "Nuova prenotazione sincronizzata: Luca Ferrari → Centro Storico Flat (5 notti)",
+    "guestCheckout": "Marco Bianchi ha lasciato Villa Posillipo — turnover richiesto entro le 15:00",
+    "alloggiatiSync": "Registro ospiti inviato alla Questura — Elena Russo (Villa Posillipo)",
+    "cinValidated": "CIN validato: {property} — {cin} ✓"
+  }
+}

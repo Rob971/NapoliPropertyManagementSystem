@@ -8,7 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { demoScenarios } from "@/data/demo-scenarios";
+import { demoScenarioIds } from "@/data/demo-scenarios";
+import { useTranslations } from "@/i18n/i18n-provider";
 import {
   ChevronDown,
   ChevronUp,
@@ -41,6 +42,8 @@ export function InteractiveDemoPanel({
   onRunScenario,
   onStartTour,
 }: InteractiveDemoPanelProps) {
+  const { t } = useTranslations();
+
   return (
     <Card
       id="demo-panel"
@@ -52,22 +55,20 @@ export function InteractiveDemoPanel({
           <div>
             <CardTitle className="flex items-center gap-2 text-base">
               <Sparkles className="size-4 text-indigo-600" />
-              Interactive MVP Preview
+              {t("demo.title")}
             </CardTitle>
-            <CardDescription>
-              Trigger scenarios on demand to preview how the first MVP will work
-            </CardDescription>
+            <CardDescription>{t("demo.description")}</CardDescription>
           </div>
           <div className="flex items-center gap-2">
             <Button size="sm" variant="outline" onClick={onStartTour}>
               <PlayCircle className="size-4" />
-              Guided Tour
+              {t("demo.guidedTour")}
             </Button>
             <Button
               size="icon-sm"
               variant="ghost"
               onClick={() => onOpenChange(!open)}
-              aria-label={open ? "Collapse panel" : "Expand panel"}
+              aria-label={open ? t("common.collapsePanel") : t("common.expandPanel")}
             >
               {open ? <ChevronUp /> : <ChevronDown />}
             </Button>
@@ -78,15 +79,15 @@ export function InteractiveDemoPanel({
       {open && (
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {demoScenarios.map((scenario) => {
-              const Icon = scenarioIcons[scenario.id] ?? Zap;
-              const isReset = scenario.id === "reset-demo";
+            {demoScenarioIds.map((scenarioId) => {
+              const Icon = scenarioIcons[scenarioId] ?? Zap;
+              const isReset = scenarioId === "reset-demo";
 
               return (
                 <button
-                  key={scenario.id}
+                  key={scenarioId}
                   type="button"
-                  onClick={() => onRunScenario(scenario.id)}
+                  onClick={() => onRunScenario(scenarioId)}
                   className={cn(
                     "group flex flex-col rounded-xl border p-4 text-left transition-all hover:shadow-md",
                     isReset
@@ -103,13 +104,15 @@ export function InteractiveDemoPanel({
                     >
                       <Icon className="size-4" />
                     </div>
-                    <p className="font-medium">{scenario.title}</p>
+                    <p className="font-medium">{t(`scenarios.${scenarioId}.title`)}</p>
                   </div>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    {scenario.description}
+                    {t(`scenarios.${scenarioId}.description`)}
                   </p>
                   <span className="mt-2 inline-flex w-fit rounded-full bg-indigo-100 px-2 py-0.5 text-[10px] font-medium text-indigo-800">
-                    MVP: {scenario.mvpFeature}
+                    {t("demo.mvpLabel", {
+                      feature: t(`scenarios.${scenarioId}.feature`),
+                    })}
                   </span>
                 </button>
               );

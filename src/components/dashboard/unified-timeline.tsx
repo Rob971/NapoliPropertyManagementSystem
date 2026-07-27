@@ -10,6 +10,7 @@ import {
   toDateKey,
 } from "@/lib/dates";
 import { bookingStatusStyles, propertyAccent } from "@/lib/property-styles";
+import { useTranslations } from "@/i18n/i18n-provider";
 import type { Booking, Property } from "@/types";
 
 const TIMELINE_DAYS = 14;
@@ -53,6 +54,7 @@ export function UnifiedTimeline({
   highlightBookingId,
   onBookingClick,
 }: UnifiedTimelineProps) {
+  const { t, locale } = useTranslations();
   const dates = generateDateRange(rangeStart, TIMELINE_DAYS);
   const todayKey = toDateKey(startOfDay(new Date()));
 
@@ -63,10 +65,8 @@ export function UnifiedTimeline({
       className="overflow-hidden rounded-xl border border-border bg-card shadow-md"
     >
       <div className="border-b border-border bg-muted/30 px-4 py-3">
-        <h2 className="text-sm font-semibold">Unified Calendar</h2>
-        <p className="text-xs text-muted-foreground">
-          Click any booking to inspect details — 14-day view across all properties
-        </p>
+        <h2 className="text-sm font-semibold">{t("timeline.title")}</h2>
+        <p className="text-xs text-muted-foreground">{t("timeline.subtitle")}</p>
       </div>
 
       <div className="overflow-x-auto">
@@ -77,7 +77,7 @@ export function UnifiedTimeline({
           }}
         >
           <div className="sticky left-0 z-20 border-b border-r border-border bg-muted/50 px-4 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            Property / CIN
+            {t("timeline.propertyCin")}
           </div>
 
           {dates.map((date) => {
@@ -92,10 +92,10 @@ export function UnifiedTimeline({
                   isToday ? "bg-blue-50 font-semibold text-blue-700" : "bg-muted/20"
                 )}
               >
-                <p>{formatShortDate(date)}</p>
+                <p>{formatShortDate(date, locale)}</p>
                 {isToday && (
                   <span className="mt-1 inline-block rounded-full bg-blue-600 px-2 py-0.5 text-[10px] text-white">
-                    Today
+                    {t("common.today")}
                   </span>
                 )}
               </div>
@@ -150,7 +150,7 @@ export function UnifiedTimeline({
                     <button
                       key={booking.id}
                       type="button"
-                      title="Click to view reservation details"
+                      title={t("timeline.bookingTitle")}
                       onClick={() => onBookingClick?.(booking)}
                       className={cn(
                         "relative z-10 m-1 flex min-h-[52px] cursor-pointer flex-col justify-center rounded-lg px-2 py-1.5 text-left text-[11px] font-medium shadow-md ring-1 transition-all hover:scale-[1.02] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -178,9 +178,9 @@ export function UnifiedTimeline({
       </div>
 
       <div className="flex flex-wrap items-center gap-4 border-t border-border bg-muted/20 px-4 py-3 text-xs text-muted-foreground">
-        <span className="font-medium text-foreground">Legend:</span>
+        <span className="font-medium text-foreground">{t("timeline.legend")}:</span>
         {Object.entries(bookingStatusStyles).map(([status]) => (
-          <span key={status} className="flex items-center gap-1.5 capitalize">
+          <span key={status} className="flex items-center gap-1.5">
             <span
               className={cn(
                 "size-2.5 rounded-full",
@@ -188,7 +188,7 @@ export function UnifiedTimeline({
                   .split(" ")[0]
               )}
             />
-            {status.replace("-", " ")}
+            {t(`bookingStatus.${status}`)}
           </span>
         ))}
       </div>

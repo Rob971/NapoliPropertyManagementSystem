@@ -47,7 +47,8 @@ export interface ActivityEvent {
   id: string;
   source: ActivitySource;
   type: ActivityType;
-  message: string;
+  messageKey: string;
+  messageParams?: Record<string, string>;
   timestamp: Date;
 }
 
@@ -57,16 +58,7 @@ export interface MockData {
   tasks: CleaningTask[];
 }
 
-export interface DemoScenario {
-  id: string;
-  title: string;
-  description: string;
-  mvpFeature: string;
-}
-
 export interface TourStep {
   id: string;
-  title: string;
-  description: string;
   target: string;
 }

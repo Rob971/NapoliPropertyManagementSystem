@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { tourSteps } from "@/data/demo-scenarios";
-import type { TourStep } from "@/types";
+import { tourStepConfigs } from "@/data/demo-scenarios";
+import { useTranslations } from "@/i18n/i18n-provider";
 import { ChevronRight, X } from "lucide-react";
 
 interface GuidedTourProps {
@@ -51,32 +51,38 @@ function TourHighlight({ target }: { target: string }) {
 
 function TourContent({
   step,
-  current,
+  stepId,
+  target,
   onNext,
   onEnd,
 }: {
   step: number;
-  current: TourStep;
+  stepId: string;
+  target: string;
   onNext: () => void;
   onEnd: () => void;
 }) {
-  const isLast = step === tourSteps.length - 1;
+  const { t } = useTranslations();
+  const isLast = step === tourStepConfigs.length - 1;
 
   return (
     <>
       <div className="fixed inset-0 z-[60] bg-black/40" onClick={onEnd} aria-hidden />
-      <TourHighlight target={current.target} />
+      <TourHighlight target={target} />
 
       <div className="fixed bottom-6 left-1/2 z-[70] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 animate-in slide-in-from-bottom-4 fade-in duration-300">
         <div className="rounded-2xl border border-indigo-200 bg-white p-5 shadow-2xl ring-1 ring-indigo-100">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs font-medium uppercase tracking-wider text-indigo-600">
-                Step {step + 1} of {tourSteps.length}
+                {t("tour.step", {
+                  current: step + 1,
+                  total: tourStepConfigs.length,
+                })}
               </p>
-              <h3 className="mt-1 text-lg font-semibold">{current.title}</h3>
+              <h3 className="mt-1 text-lg font-semibold">{t(`tour.${stepId}.title`)}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {current.description}
+                {t(`tour.${stepId}.description`)}
               </p>
             </div>
             <Button size="icon-sm" variant="ghost" onClick={onEnd}>
@@ -86,7 +92,7 @@ function TourContent({
 
           <div className="mt-4 flex items-center justify-between gap-3">
             <div className="flex gap-1">
-              {tourSteps.map((_, index) => (
+              {tourStepConfigs.map((_, index) => (
                 <span
                   key={index}
                   className={`h-1.5 rounded-full transition-all ${
@@ -102,10 +108,10 @@ function TourContent({
 
             <div className="flex gap-2">
               <Button size="sm" variant="ghost" onClick={onEnd}>
-                Skip
+                {t("tour.skip")}
               </Button>
               <Button size="sm" onClick={isLast ? onEnd : onNext}>
-                {isLast ? "Start Exploring" : "Next"}
+                {isLast ? t("tour.startExploring") : t("tour.next")}
                 {!isLast && <ChevronRight className="size-4" />}
               </Button>
             </div>
@@ -117,12 +123,15 @@ function TourContent({
 }
 
 export function GuidedTour({ step, onNext, onEnd }: GuidedTourProps) {
-  if (step === null || step >= tourSteps.length) return null;
+  if (step === null || step >= tourStepConfigs.length) return null;
+
+  const current = tourStepConfigs[step];
 
   return (
     <TourContent
       step={step}
-      current={tourSteps[step]}
+      stepId={current.id}
+      target={current.target}
       onNext={onNext}
       onEnd={onEnd}
     />

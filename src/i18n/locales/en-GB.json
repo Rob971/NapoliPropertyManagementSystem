@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "title": "Napoli PMS | Property Management PoC",
+    "description": "Proof of concept for Napoli public service property management — CIN compliance, unified calendar, and WhatsApp cleaner dispatch."
+  },
+  "common": {
+    "today": "Today",
+    "cin": "CIN",
+    "mvp": "MVP",
+    "notifications": "Notifications",
+    "collapsePanel": "Collapse panel",
+    "expandPanel": "Expand panel",
+    "propertyFallback": "property"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Switch language"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "calendar": "Calendar",
+    "suppliers": "Suppliers",
+    "settings": "Settings"
+  },
+  "sidebar": {
+    "brand": "Napoli PMS",
+    "subtitle": "Comune di Napoli",
+    "compliance": "Compliance",
+    "cinActive": "CIN Registry Active",
+    "cinDescription": "All 3 properties verified with valid Codice Identificativo Nazionale.",
+    "mvpHint": "Interactive MVP preview — scenarios run on demand"
+  },
+  "header": {
+    "operations": "Unified Operations",
+    "mvpPreview": "MVP Preview",
+    "title": "Property & Reservation Timeline",
+    "guidedTour": "Guided Tour",
+    "adminName": "Napoli Admin",
+    "adminRole": "Municipal Operator"
+  },
+  "kpi": {
+    "activeProperties": "Active Properties",
+    "activePropertiesDesc": "CIN-compliant inventory",
+    "liveBookings": "Live Bookings",
+    "liveBookingsDesc": "Across the 14-day window",
+    "turnoversConfirmed": "Turnovers Confirmed",
+    "pendingDispatch": "{count} pending dispatch"
+  },
+  "timeline": {
+    "title": "Unified Calendar",
+    "subtitle": "Click any booking to inspect details — 14-day view across all properties",
+    "propertyCin": "Property / CIN",
+    "bookingTitle": "Click to view reservation details",
+    "legend": "Legend"
+  },
+  "bookingStatus": {
+    "confirmed": "Confirmed",
+    "pending": "Pending",
+    "checked-in": "Checked In",
+    "checked-out": "Checked Out"
+  },
+  "taskStatus": {
+    "Pending": "Pending",
+    "Dispatched": "Dispatched",
+    "Confirmed": "Confirmed"
+  },
+  "taskType": {
+    "Turnover Cleaning": "Turnover Cleaning"
+  },
+  "turnovers": {
+    "title": "Pending Turnovers",
+    "description": "Checkout events requiring cleaner dispatch via WhatsApp automation",
+    "active": "{count} active",
+    "allConfirmed": "All turnovers confirmed. Cleaning crew is fully scheduled.",
+    "guestCheckout": "Guest checkout:",
+    "dispatching": "Dispatching…",
+    "simulateDispatch": "Simulate Automated Dispatch"
+  },
+  "demo": {
+    "title": "Interactive MVP Preview",
+    "description": "Trigger scenarios on demand to preview how the first MVP will work",
+    "guidedTour": "Guided Tour",
+    "mvpLabel": "MVP: {feature}"
+  },
+  "scenarios": {
+    "new-airbnb-booking": {
+      "title": "New Airbnb Booking",
+      "description": "Simulate a reservation syncing from Airbnb into the calendar.",
+      "feature": "Airbnb API integration"
+    },
+    "guest-checkout": {
+      "title": "Guest Checkout Today",
+      "description": "Mark a guest departure and create a pending turnover task.",
+      "feature": "Checkout automation"
+    },
+    "alloggiati-sync": {
+      "title": "Alloggiati Web Sync",
+      "description": "Submit guest data to the Italian police registry portal.",
+      "feature": "Alloggiati Web API"
+    },
+    "cin-validation": {
+      "title": "CIN Compliance Check",
+      "description": "Validate property CIN code against the national registry.",
+      "feature": "CIN Registry API"
+    },
+    "auto-dispatch": {
+      "title": "Auto-Dispatch Cleaner",
+      "description": "Trigger WhatsApp dispatch for the next pending turnover.",
+      "feature": "WhatsApp Business API"
+    },
+    "reset-demo": {
+      "title": "Reset Demo",
+      "description": "Restore all data to the initial presentation state.",
+      "feature": "Fresh demo session"
+    }
+  },
+  "activity": {
+    "title": "Live Activity Feed",
+    "description": "Simulated MVP integrations — updates as you interact"
+  },
+  "bookingDetail": {
+    "title": "Reservation Detail",
+    "guest": "Guest",
+    "stay": "Stay",
+    "propertyCompliance": "Property & Compliance",
+    "cinVerified": "CIN Registry — Verified",
+    "turnoverCleaning": "Turnover Cleaning",
+    "scheduled": "Scheduled: {date}",
+    "dispatching": "Dispatching…",
+    "simulateDispatch": "Simulate WhatsApp Dispatch",
+    "mvpNote": "In the paid MVP, this panel connects to live Airbnb, Alloggiati Web, and WhatsApp APIs."
+  },
+  "whatsapp": {
+    "title": "Pulizie Napoli — WhatsApp",
+    "subtitle": "Automated supplier dispatch",
+    "message": "🤖 System: Turnover tomorrow at {property}. Check-out 10:00, next Check-in 15:00. Can you take this job?",
+    "timestamp": "Just now · Automated",
+    "accept": "✅ Accept Job",
+    "decline": "❌ Cannot Do It"
+  },
+  "tour": {
+    "step": "Step {current} of {total}",
+    "skip": "Skip",
+    "next": "Next",
+    "startExploring": "Start Exploring",
+    "welcome": {
+      "title": "Welcome to the MVP Preview",
+      "description": "This interactive demo shows how the first MVP will look and behave. Explore scenarios on demand — no backend required."
+    },
+    "kpis": {
+      "title": "Operations at a Glance",
+      "description": "KPI cards track properties, live bookings, and confirmed turnovers — updated in real time as you interact."
+    },
+    "timeline": {
+      "title": "Unified Reservation Timeline",
+      "description": "The 14-day grid spans all properties. Click any booking block to inspect details, CIN compliance, and linked cleaning tasks."
+    },
+    "activity": {
+      "title": "Live Activity Feed",
+      "description": "Every simulated API event appears here — Airbnb syncs, Alloggiati submissions, WhatsApp dispatches, and CIN checks."
+    },
+    "turnovers": {
+      "title": "Automated Cleaner Dispatch",
+      "description": "Pending turnovers trigger WhatsApp messages to cleaning suppliers. Accept or decline to see the workflow update instantly."
+    },
+    "scenarios": {
+      "title": "Try It Yourself",
+      "description": "Use the scenario buttons to simulate MVP integrations on demand. This is exactly how stakeholders will evaluate the product."
+    }
+  },
+  "toast": {
+    "demoReset": {
+      "title": "Demo reset",
+      "description": "All data restored to the initial presentation state."
+    },
+    "cleanerConfirmed": {
+      "title": "Cleaner confirmed via WhatsApp",
+      "description": "{property} turnover is now scheduled."
+    },
+    "supplierDeclined": {
+      "title": "Supplier declined the job",
+      "description": "Task returned to pending for manual reassignment."
+    },
+    "airbnbSync": {
+      "title": "Airbnb sync complete",
+      "description": "Luca Ferrari booked Centro Storico Flat"
+    },
+    "guestCheckout": {
+      "title": "Guest checkout detected",
+      "description": "Marco Bianchi departed Villa Posillipo at 10:00"
+    },
+    "alloggiatiSync": {
+      "title": "Alloggiati Web synced",
+      "description": "Guest data submitted to the Italian police registry portal"
+    },
+    "cinVerified": {
+      "title": "CIN compliance verified",
+      "description": "{property} — registry status: ACTIVE"
+    },
+    "noPendingTurnovers": {
+      "title": "No pending turnovers",
+      "description": "Reset the demo or run Guest Checkout first."
+    }
+  },
+  "activityMessages": {
+    "initPreview": "Interactive MVP preview loaded — try scenarios on demand",
+    "initCin": "3 properties verified with valid Codice Identificativo Nazionale",
+    "dispatchSent": "Dispatch sent to Pulizie Napoli for {property}",
+    "cleanerConfirmed": "Cleaner confirmed for {property}",
+    "supplierDeclined": "Supplier declined job for {property}",
+    "airbnbBooking": "New reservation synced: Luca Ferrari → Centro Storico Flat (5 nights)",
+    "guestCheckout": "Marco Bianchi checked out of Villa Posillipo — turnover required by 15:00",
+    "alloggiatiSync": "Guest registry submitted to Questura — Elena Russo (Villa Posillipo)",
+    "cinValidated": "CIN validated: {property} — {cin} ✓"
+  }
+}

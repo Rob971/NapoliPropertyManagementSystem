@@ -10,6 +10,7 @@ import { WhatsAppDispatchDialog } from "@/components/dashboard/whatsapp-dispatch
 import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
 import { useDemoState } from "@/hooks/use-demo-state";
+import { useTranslations } from "@/i18n/i18n-provider";
 import {
   Card,
   CardContent,
@@ -21,6 +22,7 @@ import { Building2, CalendarRange, ShieldCheck } from "lucide-react";
 
 export function Dashboard() {
   const demo = useDemoState();
+  const { t } = useTranslations();
 
   return (
     <div className="flex min-h-screen bg-[#f4f6fb]">
@@ -39,10 +41,10 @@ export function Dashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-white">
                   <Building2 className="size-4" />
-                  Active Properties
+                  {t("kpi.activeProperties")}
                 </CardTitle>
                 <CardDescription className="text-blue-100">
-                  CIN-compliant inventory
+                  {t("kpi.activePropertiesDesc")}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -54,9 +56,9 @@ export function Dashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CalendarRange className="size-4 text-sky-600" />
-                  Live Bookings
+                  {t("kpi.liveBookings")}
                 </CardTitle>
-                <CardDescription>Across the 14-day window</CardDescription>
+                <CardDescription>{t("kpi.liveBookingsDesc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">{demo.bookings.length}</p>
@@ -67,10 +69,10 @@ export function Dashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ShieldCheck className="size-4 text-emerald-600" />
-                  Turnovers Confirmed
+                  {t("kpi.turnoversConfirmed")}
                 </CardTitle>
                 <CardDescription>
-                  {demo.pendingCount} pending dispatch
+                  {t("kpi.pendingDispatch", { count: demo.pendingCount })}
                 </CardDescription>
               </CardHeader>
               <CardContent>

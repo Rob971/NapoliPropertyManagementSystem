@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTranslations } from "@/i18n/i18n-provider";
 import type { Property } from "@/types";
 import { MessageCircle } from "lucide-react";
 
@@ -27,6 +28,8 @@ export function WhatsAppDispatchDialog({
   onAccept,
   onDecline,
 }: WhatsAppDispatchDialogProps) {
+  const { t } = useTranslations();
+
   if (!property) return null;
 
   return (
@@ -40,10 +43,10 @@ export function WhatsAppDispatchDialog({
             <div>
               <DialogHeader className="text-left">
                 <DialogTitle className="text-base text-white">
-                  Pulizie Napoli — WhatsApp
+                  {t("whatsapp.title")}
                 </DialogTitle>
                 <DialogDescription className="text-emerald-100">
-                  Automated supplier dispatch
+                  {t("whatsapp.subtitle")}
                 </DialogDescription>
               </DialogHeader>
             </div>
@@ -53,11 +56,9 @@ export function WhatsAppDispatchDialog({
         <div className="space-y-4 bg-[#e5ddd5] p-4">
           <div className="max-w-[90%] rounded-lg rounded-tl-none bg-white p-3 shadow-sm">
             <p className="text-sm leading-relaxed text-slate-800">
-              🤖 System: Turnover tomorrow at{" "}
-              <span className="font-semibold">{property.name}</span>. Check-out
-              10:00, next Check-in 15:00. Can you take this job?
+              {t("whatsapp.message", { property: property.name })}
             </p>
-            <p className="mt-2 text-[10px] text-slate-400">Just now · Automated</p>
+            <p className="mt-2 text-[10px] text-slate-400">{t("whatsapp.timestamp")}</p>
           </div>
 
           <DialogFooter className="flex-col gap-2 border-0 bg-transparent p-0 sm:flex-row">
@@ -65,14 +66,14 @@ export function WhatsAppDispatchDialog({
               className="w-full bg-[#25d366] text-white hover:bg-[#1ebe57] sm:flex-1"
               onClick={onAccept}
             >
-              ✅ Accept Job
+              {t("whatsapp.accept")}
             </Button>
             <Button
               variant="outline"
               className="w-full border-rose-200 bg-white text-rose-600 hover:bg-rose-50 sm:flex-1"
               onClick={onDecline}
             >
-              ❌ Cannot Do It
+              {t("whatsapp.decline")}
             </Button>
           </DialogFooter>
         </div>

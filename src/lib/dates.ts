@@ -1,3 +1,6 @@
+import type { Locale } from "@/i18n/config";
+import { toDateLocale } from "@/i18n/config";
+
 export function startOfDay(date: Date): Date {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
@@ -25,20 +28,27 @@ export function daysBetween(start: Date, end: Date): number {
   return Math.round((startOfDay(end).getTime() - startOfDay(start).getTime()) / msPerDay);
 }
 
-export function formatShortDate(date: Date): string {
-  return date.toLocaleDateString("it-IT", {
+export function formatShortDate(date: Date, locale: Locale): string {
+  return date.toLocaleDateString(toDateLocale(locale), {
     weekday: "short",
     day: "numeric",
     month: "short",
   });
 }
 
-export function formatLongDate(date: Date): string {
-  return date.toLocaleDateString("it-IT", {
+export function formatLongDate(date: Date, locale: Locale): string {
+  return date.toLocaleDateString(toDateLocale(locale), {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
+  });
+}
+
+export function formatTime(date: Date, locale: Locale): string {
+  return date.toLocaleTimeString(toDateLocale(locale), {
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }
 

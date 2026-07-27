@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Napoli PMS | Property Management PoC",
+  title: "Napoli PMS | Property Management System",
   description:
-    "Proof of concept for Napoli public service property management — CIN compliance, unified calendar, and WhatsApp cleaner dispatch.",
+    "Sistema di gestione immobiliare per il Comune di Napoli — conformità CIN, calendario unificato e dispatch pulizie via WhatsApp. Property management for Napoli public service.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="it"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
