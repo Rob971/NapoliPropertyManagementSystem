@@ -74,7 +74,26 @@ Then open `http://localhost:3000/NapoliPropertyManagementSystem/` (adjust the pa
 
 ## Features
 
-1. **Mock data** — Properties, bookings, and cleaning tasks in `src/data/mock-data.ts`
-2. **Dashboard layout** — Sidebar navigation, header with Napoli Admin profile
-3. **Custom timeline** — Tailwind CSS grid (no third-party calendar library)
-4. **WhatsApp simulation** — 1s dispatch delay, dialog with Accept/Decline, live task state updates
+1. **Interactive MVP Preview** — On-demand scenarios simulate Airbnb sync, checkout, Alloggiati Web, CIN validation, and WhatsApp dispatch
+2. **Guided Tour** — Step-by-step walkthrough for stakeholders
+3. **Booking Detail Panel** — Click any reservation to inspect guest, CIN compliance, and turnover status
+4. **Live Activity Feed** — Real-time log of simulated API events
+5. **Mock data** — Properties, bookings, and cleaning tasks in `src/data/mock-data.ts`
+6. **Dashboard layout** — Sidebar navigation, header with Napoli Admin profile
+7. **Custom timeline** — Tailwind CSS grid (no third-party calendar library)
+8. **WhatsApp simulation** — 1s dispatch delay, dialog with Accept/Decline, live task state updates
+
+### Try the Interactive Demo
+
+Open the live site and use the **Interactive MVP Preview** panel:
+
+| Scenario | What it simulates |
+|----------|-------------------|
+| New Airbnb Booking | Reservation syncs into the calendar |
+| Guest Checkout Today | Departure triggers a turnover task |
+| Alloggiati Web Sync | Guest data sent to police registry |
+| CIN Compliance Check | National registry validation |
+| Auto-Dispatch Cleaner | WhatsApp message to cleaning supplier |
+| Reset Demo | Restore initial presentation state |
+
+Click **Guided Tour** in the header for a walkthrough.

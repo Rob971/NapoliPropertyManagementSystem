@@ -57,6 +57,9 @@ export function Sidebar() {
             All 3 properties verified with valid Codice Identificativo Nazionale.
           </p>
         </div>
+        <p className="mt-3 text-center text-[10px] text-muted-foreground">
+          Interactive MVP preview — scenarios run on demand
+        </p>
       </div>
     </aside>
   );

@@ -34,7 +34,7 @@ export function PendingTurnovers({
   });
 
   return (
-    <Card id="pending-turnovers" className="shadow-md">
+    <Card id="pending-turnovers" data-tour="pending-turnovers" className="shadow-md">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div>

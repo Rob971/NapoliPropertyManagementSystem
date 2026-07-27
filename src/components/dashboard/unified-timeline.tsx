@@ -18,6 +18,8 @@ interface UnifiedTimelineProps {
   properties: Property[];
   bookings: Booking[];
   rangeStart: Date;
+  selectedBookingId?: string | null;
+  highlightBookingId?: string | null;
   onBookingClick?: (booking: Booking) => void;
 }
 
@@ -47,17 +49,23 @@ export function UnifiedTimeline({
   properties,
   bookings,
   rangeStart,
+  selectedBookingId,
+  highlightBookingId,
   onBookingClick,
 }: UnifiedTimelineProps) {
   const dates = generateDateRange(rangeStart, TIMELINE_DAYS);
   const todayKey = toDateKey(startOfDay(new Date()));
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card shadow-md">
+    <div
+      id="timeline"
+      data-tour="timeline"
+      className="overflow-hidden rounded-xl border border-border bg-card shadow-md"
+    >
       <div className="border-b border-border bg-muted/30 px-4 py-3">
         <h2 className="text-sm font-semibold">Unified Calendar</h2>
         <p className="text-xs text-muted-foreground">
-          14-day reservation view across all Napoli properties
+          Click any booking to inspect details — 14-day view across all properties
         </p>
       </div>
 
@@ -135,17 +143,21 @@ export function UnifiedTimeline({
 
                   const rowStart =
                     properties.findIndex((item) => item.id === property.id) + 2;
+                  const isSelected = selectedBookingId === booking.id;
+                  const isHighlighted = highlightBookingId === booking.id;
 
                   return (
                     <button
                       key={booking.id}
                       type="button"
-                      title="Click to dispatch turnover cleaning"
+                      title="Click to view reservation details"
                       onClick={() => onBookingClick?.(booking)}
                       className={cn(
-                        "relative z-10 m-1 flex min-h-[52px] cursor-pointer flex-col justify-center rounded-lg px-2 py-1.5 text-left text-[11px] font-medium shadow-md ring-1 transition-transform hover:scale-[1.02] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        "relative z-10 m-1 flex min-h-[52px] cursor-pointer flex-col justify-center rounded-lg px-2 py-1.5 text-left text-[11px] font-medium shadow-md ring-1 transition-all hover:scale-[1.02] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                         bookingStatusStyles[booking.status],
-                        accent?.ring
+                        accent?.ring,
+                        isSelected && "ring-2 ring-indigo-500 ring-offset-1",
+                        isHighlighted && "animate-pulse ring-2 ring-amber-400"
                       )}
                       style={{
                         gridColumn: `${span.start} / span ${span.span}`,

@@ -4,6 +4,21 @@ export type TaskStatus = "Pending" | "Dispatched" | "Confirmed";
 
 export type TaskType = "Turnover Cleaning";
 
+export type ActivitySource =
+  | "Airbnb"
+  | "WhatsApp"
+  | "Alloggiati Web"
+  | "System"
+  | "CIN Registry";
+
+export type ActivityType =
+  | "booking"
+  | "checkout"
+  | "dispatch"
+  | "compliance"
+  | "sync"
+  | "info";
+
 export interface Property {
   id: string;
   name: string;
@@ -28,8 +43,30 @@ export interface CleaningTask {
   status: TaskStatus;
 }
 
+export interface ActivityEvent {
+  id: string;
+  source: ActivitySource;
+  type: ActivityType;
+  message: string;
+  timestamp: Date;
+}
+
 export interface MockData {
   properties: Property[];
   bookings: Booking[];
   tasks: CleaningTask[];
+}
+
+export interface DemoScenario {
+  id: string;
+  title: string;
+  description: string;
+  mvpFeature: string;
+}
+
+export interface TourStep {
+  id: string;
+  title: string;
+  description: string;
+  target: string;
 }
