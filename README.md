@@ -78,10 +78,17 @@ Then open `http://localhost:3000/NapoliPropertyManagementSystem/` (adjust the pa
 2. **Guided Tour** — Step-by-step walkthrough for stakeholders
 3. **Booking Detail Panel** — Click any reservation to inspect guest, CIN compliance, and turnover status
 4. **Live Activity Feed** — Real-time log of simulated API events
-5. **Mock data** — Properties, bookings, and cleaning tasks in `src/data/mock-data.ts`
-6. **Dashboard layout** — Sidebar navigation, header with Napoli Admin profile
-7. **Custom timeline** — Tailwind CSS grid (no third-party calendar library)
-8. **WhatsApp simulation** — 1s dispatch delay, dialog with Accept/Decline, live task state updates
+5. **Internationalisation (i18n)** — Full UI in **Italian** and **English (UK)** with language switcher
+6. **Mock data** — Properties, bookings, and cleaning tasks in `src/data/mock-data.ts`
+7. **Dashboard layout** — Sidebar navigation, header with Napoli Admin profile
+8. **Custom timeline** — Tailwind CSS grid (no third-party calendar library)
+9. **WhatsApp simulation** — 1s dispatch delay, dialog with Accept/Decline, live task state updates
+
+### Languages
+
+The UI supports **Italiano** and **English (UK)**. Use the language switcher (🇮🇹 IT / 🇬🇧 EN) in the header. Preference is saved to localStorage.
+
+Translation files: `src/i18n/locales/it.json` and `src/i18n/locales/en-GB.json`
 
 ### Try the Interactive Demo
 
