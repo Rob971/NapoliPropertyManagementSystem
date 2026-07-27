@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { getTenantInterpolationParams } from "@/config/tenant";
 import enGB from "@/i18n/locales/en-GB.json";
 import it from "@/i18n/locales/it.json";
 
@@ -30,9 +31,9 @@ export function translate(
 
   if (typeof value !== "string") return key;
 
-  if (!params) return value;
+  const mergedParams = { ...getTenantInterpolationParams(locale), ...params };
 
-  return Object.entries(params).reduce(
+  return Object.entries(mergedParams).reduce(
     (result, [paramKey, paramValue]) =>
       result.replaceAll(`{${paramKey}}`, String(paramValue)),
     value

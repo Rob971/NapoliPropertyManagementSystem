@@ -1,11 +1,11 @@
 {
   "name": "pms-app",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:gitlab": "NEXT_PUBLIC_BASE_PATH=/${CI_PROJECT_NAME:-NapoliPropertyManagementSystem} next build",
+    "build:pages": "bash -c 'source deploy/load-tenant-env.sh && next build'",
     "start": "next start",
     "lint": "eslint"
   },

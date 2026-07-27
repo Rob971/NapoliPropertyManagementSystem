@@ -12,10 +12,13 @@ default:
 
 variables:
   NEXT_TELEMETRY_DISABLED: "1"
+  TENANT_ID: "napoli"
   # GitLab project pages are served at https://<namespace>.gitlab.io/<project>/
   NEXT_PUBLIC_BASE_PATH: "/$CI_PROJECT_NAME"
 
 before_script:
+  - chmod +x deploy/load-tenant-env.sh
+  - source deploy/load-tenant-env.sh
   - npm ci
 
 lint:

@@ -14,9 +14,9 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      GITLAB_HOST: gitlab.com
-      GITLAB_NAMESPACE: Rob971
-      GITLAB_PROJECT: NapoliPropertyManagementSystem
+      GITLAB_HOST: ${{ vars.GITLAB_HOST || 'gitlab.com' }}
+      GITLAB_NAMESPACE: ${{ vars.GITLAB_NAMESPACE || github.repository_owner }}
+      GITLAB_PROJECT: ${{ vars.GITLAB_PROJECT || github.event.repository.name }}
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v4

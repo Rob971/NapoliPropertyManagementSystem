@@ -26,6 +26,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 
+Copy `.env.example` to `.env.local` to override tenant branding locally (optional — Napoli defaults apply).
+
+## Multi-customer / reuse
+
+The codebase is structured so the **product core** can be forked for other customers. Branding and DevOps are externalised:
+
+- **Tenant config:** `deploy/tenants/*.env` + `src/config/tenant.ts`
+- **DevOps:** parameterized GitHub/GitLab workflows (repo name drives base path)
+- **Guide:** [docs/MULTI-TENANT.md](docs/MULTI-TENANT.md) · [deploy/README.md](deploy/README.md)
+
 ## Deploy on GitLab Pages
 
 This project is configured for **GitLab CI/CD** with automatic deployment to GitLab Pages on the default branch (`main`).
@@ -45,7 +55,9 @@ GitHub Pages deploys automatically on every push to `main`. GitLab Pages deploys
 2. In GitHub, go to **Settings → Secrets and variables → Actions** and add `GITLAB_TOKEN`.
 3. Re-run the **Sync to GitLab Pages** workflow (or push to `main`).
 
-The sync workflow will create `gitlab.com/Rob971/NapoliPropertyManagementSystem`, push the code, and GitLab CI will publish Pages.
+The sync workflow mirrors this repository to GitLab (project path defaults to the GitHub repo name) and GitLab CI publishes Pages.
+
+Optional GitHub repository variables: `GITLAB_NAMESPACE`, `GITLAB_PROJECT`, `GITLAB_HOST`, `TENANT_ID`.
 
 ### Manual GitLab import (alternative)
 
@@ -66,11 +78,11 @@ The sync workflow will create `gitlab.com/Rob971/NapoliPropertyManagementSystem`
 To preview the GitLab Pages URL locally with the correct base path:
 
 ```bash
-npm run build:gitlab
+NEXT_PUBLIC_BASE_PATH=/YourRepoName npm run build:pages
 npx serve out
 ```
 
-Then open `http://localhost:3000/NapoliPropertyManagementSystem/` (adjust the path to match your project name).
+Then open `http://localhost:3000/YourRepoName/` (match your repository name).
 
 ## Features
 

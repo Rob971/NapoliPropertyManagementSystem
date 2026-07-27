@@ -18,8 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_BASE_PATH: /NapoliPropertyManagementSystem
       NEXT_TELEMETRY_DISABLED: "1"
+      TENANT_ID: ${{ vars.TENANT_ID || 'napoli' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -27,6 +27,13 @@ jobs:
         with:
           node-version: 22
           cache: npm
+
+      - name: Load tenant config
+        run: |
+          chmod +x deploy/load-tenant-env.sh
+          source deploy/load-tenant-env.sh
+          echo "NEXT_PUBLIC_BASE_PATH=/${{ github.event.repository.name }}" >> "$GITHUB_ENV"
+          grep -E '^NEXT_PUBLIC_' "deploy/tenants/${TENANT_ID}.env" >> "$GITHUB_ENV"
 
       - name: Install dependencies
         run: npm ci

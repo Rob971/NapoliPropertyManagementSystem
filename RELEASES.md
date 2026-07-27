@@ -9,7 +9,8 @@ Sequential pull → merge → release log for all project PRs.
 | [#3](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/3) | `cursor/release-v1-30d9` | Release v1.0.0 | `194af9c` | [v1.0.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.0.0) | ✅ Merged & Released |
 | [#4](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/4) | `cursor/stakeholder-demo-30d9` | Stakeholder demo interactions | `658097f` | [v1.1.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.1.0) | ✅ Merged & Released |
 | [#5](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/5) | `cursor/interactive-mvp-demo-30d9` | Interactive on-demand MVP preview | `abe11b6` | [v1.2.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.2.0) | ✅ Merged & Released |
-| [#8](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/8) | `cursor/i18n-it-en-gb-30d9` | Internationalise UI for Italian and English (UK) | `fa7b6e7` | [v1.3.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.3.0) | ✅ Merged & Released |
+| [#9](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/9) | `cursor/default-locale-it-30d9` | Default locale to Italian on first visit | `66c89d2` | — | ✅ Merged |
+| [#10](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/10) | `cursor/multi-tenant-abstraction-30d9` | Multi-customer tenant config and DevOps abstraction | — | [v1.4.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.4.0) | ✅ Merged & Released |
 
 ## Live Demo
 
@@ -37,3 +38,9 @@ https://rob971.github.io/NapoliPropertyManagementSystem/
 - Language switcher in header with localStorage persistence
 - Locale-aware date/time formatting
 - Translation files: `src/i18n/locales/it.json`, `src/i18n/locales/en-GB.json`
+
+### v1.4.0 — Multi-customer abstraction (PR #10)
+- Tenant branding via `deploy/tenants/*.env` and `src/config/tenant.ts`
+- Parameterized GitHub Pages and GitLab sync workflows (repo name → base path)
+- Shared `deploy/load-tenant-env.sh` for CI and local pages builds
+- Multi-tenant onboarding guide: `docs/MULTI-TENANT.md`

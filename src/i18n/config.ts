@@ -14,7 +14,7 @@ export const localeFlags: Record<Locale, string> = {
   "en-GB": "🇬🇧",
 };
 
-export const LOCALE_STORAGE_KEY = "napoli-pms-locale";
+export const LOCALE_STORAGE_KEY = `${process.env.NEXT_PUBLIC_TENANT_ID?.trim() || "napoli"}-pms-locale`;
 
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);

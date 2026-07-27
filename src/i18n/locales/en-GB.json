@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Napoli PMS | Property Management PoC",
-    "description": "Proof of concept for Napoli public service property management — CIN compliance, unified calendar, and WhatsApp cleaner dispatch."
+    "title": "{appName} | Property Management PoC",
+    "description": "Proof of concept for {municipality} property management — CIN compliance, unified calendar, and WhatsApp cleaner dispatch."
   },
   "common": {
     "today": "Today",
@@ -23,8 +23,8 @@
     "settings": "Settings"
   },
   "sidebar": {
-    "brand": "Napoli PMS",
-    "subtitle": "Comune di Napoli",
+    "brand": "{appName}",
+    "subtitle": "{municipality}",
     "compliance": "Compliance",
     "cinActive": "CIN Registry Active",
     "cinDescription": "All 3 properties verified with valid Codice Identificativo Nazionale.",
@@ -35,7 +35,7 @@
     "mvpPreview": "MVP Preview",
     "title": "Property & Reservation Timeline",
     "guidedTour": "Guided Tour",
-    "adminName": "Napoli Admin",
+    "adminName": "{adminName}",
     "adminRole": "Municipal Operator"
   },
   "kpi": {
@@ -131,7 +131,7 @@
     "mvpNote": "In the paid MVP, this panel connects to live Airbnb, Alloggiati Web, and WhatsApp APIs."
   },
   "whatsapp": {
-    "title": "Pulizie Napoli — WhatsApp",
+    "title": "{cleanerSupplier} — WhatsApp",
     "subtitle": "Automated supplier dispatch",
     "message": "🤖 System: Turnover tomorrow at {property}. Check-out 10:00, next Check-in 15:00. Can you take this job?",
     "timestamp": "Just now · Automated",
@@ -205,7 +205,7 @@
   "activityMessages": {
     "initPreview": "Interactive MVP preview loaded — try scenarios on demand",
     "initCin": "3 properties verified with valid Codice Identificativo Nazionale",
-    "dispatchSent": "Dispatch sent to Pulizie Napoli for {property}",
+    "dispatchSent": "Dispatch sent to {cleanerSupplier} for {property}",
     "cleanerConfirmed": "Cleaner confirmed for {property}",
     "supplierDeclined": "Supplier declined job for {property}",
     "airbnbBooking": "New reservation synced: Luca Ferrari → Centro Storico Flat (5 nights)",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getTenantMetadata } from "@/config/tenant";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Napoli PMS | Property Management System",
-  description:
-    "Sistema di gestione immobiliare per il Comune di Napoli — conformità CIN, calendario unificato e dispatch pulizie via WhatsApp. Property management for Napoli public service.",
+  title: getTenantMetadata("it").title,
+  description: getTenantMetadata("it").description,
 };
 
 export default function RootLayout({

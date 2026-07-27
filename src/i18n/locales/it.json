@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Napoli PMS | Sistema di Gestione Immobiliare",
-    "description": "Proof of concept per la gestione immobiliare del servizio pubblico napoletano — conformità CIN, calendario unificato e dispatch pulizie via WhatsApp."
+    "title": "{appName} | Sistema di Gestione Immobiliare",
+    "description": "Proof of concept per la gestione immobiliare di {municipality} — conformità CIN, calendario unificato e dispatch pulizie via WhatsApp."
   },
   "common": {
     "today": "Oggi",
@@ -23,8 +23,8 @@
     "settings": "Impostazioni"
   },
   "sidebar": {
-    "brand": "Napoli PMS",
-    "subtitle": "Comune di Napoli",
+    "brand": "{appName}",
+    "subtitle": "{municipality}",
     "compliance": "Conformità",
     "cinActive": "Registro CIN Attivo",
     "cinDescription": "Tutte e 3 le proprietà verificate con Codice Identificativo Nazionale valido.",
@@ -35,7 +35,7 @@
     "mvpPreview": "Anteprima MVP",
     "title": "Timeline Proprietà e Prenotazioni",
     "guidedTour": "Tour Guidato",
-    "adminName": "Admin Napoli",
+    "adminName": "{adminName}",
     "adminRole": "Operatore Comunale"
   },
   "kpi": {
@@ -131,7 +131,7 @@
     "mvpNote": "Nell'MVP a pagamento, questo pannello si collega alle API live Airbnb, Alloggiati Web e WhatsApp."
   },
   "whatsapp": {
-    "title": "Pulizie Napoli — WhatsApp",
+    "title": "{cleanerSupplier} — WhatsApp",
     "subtitle": "Dispatch fornitore automatizzato",
     "message": "🤖 Sistema: Turnover domani presso {property}. Check-out 10:00, prossimo Check-in 15:00. Puoi accettare questo lavoro?",
     "timestamp": "Adesso · Automatizzato",
@@ -205,7 +205,7 @@
   "activityMessages": {
     "initPreview": "Anteprima MVP interattiva caricata — prova gli scenari on demand",
     "initCin": "3 proprietà verificate con Codice Identificativo Nazionale valido",
-    "dispatchSent": "Dispatch inviato a Pulizie Napoli per {property}",
+    "dispatchSent": "Dispatch inviato a {cleanerSupplier} per {property}",
     "cleanerConfirmed": "Pulizie confermate per {property}",
     "supplierDeclined": "Fornitore ha rifiutato il lavoro per {property}",
     "airbnbBooking": "Nuova prenotazione sincronizzata: Luca Ferrari → Centro Storico Flat (5 notti)",
