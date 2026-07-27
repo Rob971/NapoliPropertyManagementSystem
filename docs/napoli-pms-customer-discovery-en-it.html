@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Napoli PMS — Customer Discovery Questions / Domande di Discovery</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #1a1a2e;
+      line-height: 1.45;
+      font-size: 10.5pt;
+      margin: 0;
+      padding: 0;
+    }
+    .cover {
+      page-break-after: always;
+      min-height: 250mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20mm 10mm;
+      background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+      color: white;
+      border-radius: 4px;
+    }
+    .cover h1 { font-size: 28pt; margin: 0 0 8px; font-weight: 700; }
+    .cover h2 { font-size: 14pt; font-weight: 400; opacity: 0.9; margin: 0 0 24px; }
+    .cover .meta { font-size: 10pt; opacity: 0.85; margin-top: 40px; }
+    .cover .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 9pt;
+      margin-top: 16px;
+    }
+    .lang-section { page-break-before: always; }
+    .lang-section:first-of-type { page-break-before: auto; }
+    .lang-header {
+      background: #f1f5f9;
+      border-left: 4px solid #1d4ed8;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+    .lang-header h2 { margin: 0; font-size: 18pt; color: #1e3a8a; }
+    .lang-header p { margin: 4px 0 0; color: #64748b; font-size: 9.5pt; }
+    .intro {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      font-size: 10pt;
+    }
+    .category {
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+    .category h3 {
+      color: #1d4ed8;
+      font-size: 11.5pt;
+      margin: 0 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .category ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .category li {
+      margin-bottom: 6px;
+      font-size: 10pt;
+    }
+    .meeting-box {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 24px 0;
+      page-break-inside: avoid;
+    }
+    .meeting-box h3 { margin: 0 0 8px; color: #166534; font-size: 11pt; }
+    .meeting-box ul { margin: 0; padding-left: 18px; }
+    .meeting-box li { margin-bottom: 4px; font-size: 9.5pt; }
+    .quote {
+      font-style: italic;
+      color: #475569;
+      border-left: 3px solid #94a3b8;
+      padding-left: 12px;
+      margin: 20px 0;
+      font-size: 10pt;
+    }
+    footer {
+      margin-top: 30px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 8.5pt;
+      color: #94a3b8;
+      text-align: center;
+    }
+    .toc { margin-bottom: 24px; }
+    .toc li { margin-bottom: 4px; font-size: 10pt; }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="badge">Napoli Property Management System</div>
+  <h1>Customer Discovery Questions</h1>
+  <h2>Domande di Discovery per il Cliente</h2>
+  <p style="font-size: 11pt; max-width: 420px; line-height: 1.6; opacity: 0.92;">
+    Bilingual briefing document to clarify MVP scope before contract approval.<br/>
+    Documento bilingue per chiarire lo scope dell'MVP prima dell'approvazione del contratto.
+  </p>
+  <div class="meta">
+    Version 1.0 · July 2026<br/>
+    Based on Napoli PMS PoC — Interactive MVP Preview
+  </div>
+</div>
+
+<!-- ENGLISH -->
+<div class="lang-section">
+  <div class="lang-header">
+    <h2>🇬🇧 English</h2>
+    <p>Questions to clarify with the customer before scoping the paid MVP</p>
+  </div>
+
+  <div class="intro">
+    <strong>Purpose:</strong> This PoC demonstrates the user experience and automation logic. These questions define which integrations, compliance rules, and operational workflows the paid MVP must implement first.
+  </div>
+
+  <div class="category">
+    <h3>1. Business Context & Success Criteria</h3>
+    <ol start="1">
+      <li>Who are the primary daily users — municipal operators, property managers, cleaning suppliers, or all three?</li>
+      <li>What must the MVP solve first: CIN compliance, reservation visibility, cleaner dispatch, or all equally?</li>
+      <li>What does success look like 3–6 months after go-live?</li>
+      <li>Is this for Napoli only, or a model for other municipalities?</li>
+      <li>Who approves the contract and who signs off on MVP acceptance?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>2. Properties & Inventory</h3>
+    <ol start="6">
+      <li>How many properties will the MVP manage — tens, hundreds, or thousands?</li>
+      <li>Are properties owned by the Comune, managed by agents, or a mix?</li>
+      <li>Is CIN the only compliance field, or are there others (SCIA, tourist tax, fire safety)?</li>
+      <li>Who keeps CIN data correct — owner, agent, or the system?</li>
+      <li>Do properties have different rules (check-in/out times, cleaning windows)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>3. Reservations & Channel Integrations</h3>
+    <ol start="11">
+      <li>Which booking channels matter for MVP — Airbnb, Booking.com, direct, others?</li>
+      <li>Two-way sync (read + write) or read-only import into the timeline?</li>
+      <li>How often should reservations sync — real time, hourly, daily?</li>
+      <li>Who is the source of truth when a channel and internal calendar disagree?</li>
+      <li>Are there non-OTA bookings that must be entered manually?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>4. Compliance — CIN & Alloggiati Web</h3>
+    <ol start="16">
+      <li>Must CIN validation be automatic via national registry API, or manual verification for MVP?</li>
+      <li>Is Alloggiati Web integration mandatory for MVP, or phase 2?</li>
+      <li>Who submits guest data — the system automatically, or an operator after review?</li>
+      <li>What happens if a guest is not registered before the legal deadline?</li>
+      <li>Are audit/reporting requirements needed for compliance (logs, Questura exports)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>5. Operations — Timeline & Turnovers</h3>
+    <ol start="21">
+      <li>Is the 14-day unified timeline sufficient, or is month/property/supplier view needed?</li>
+      <li>What defines a turnover — every checkout, or only same-day check-in?</li>
+      <li>What are standard checkout/check-in times (e.g. 10:00 / 15:00)?</li>
+      <li>How much buffer is required between checkout and next check-in for cleaning?</li>
+      <li>Must same-day turnovers be treated as a priority workflow?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>6. Cleaning Suppliers & WhatsApp Automation</h3>
+    <ol start="26">
+      <li>How many cleaning suppliers at launch?</li>
+      <li>Is WhatsApp required, or are SMS/email/phone fallbacks needed?</li>
+      <li>Personal WhatsApp or WhatsApp Business API with approved templates?</li>
+      <li>What happens if no supplier accepts — retry, escalate, manual assignment?</li>
+      <li>Do suppliers need calendars, availability, pricing, or proof of completion (photos)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>7. Users, Roles & Permissions</h3>
+    <ol start="31">
+      <li>What roles are needed — admin, operator, agent, supplier, auditor?</li>
+      <li>Can agents see only their properties, or the full municipal portfolio?</li>
+      <li>Do suppliers need a portal, or is WhatsApp-only enough for MVP?</li>
+      <li>Is multi-language support required (Italian, English)?</li>
+      <li>Is SSO or municipal identity (SPID/CIE) required for login?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>8. Notifications & Activity Monitoring</h3>
+    <ol start="36">
+      <li>Which events must trigger alerts — new booking, checkout, failed sync, declined job?</li>
+      <li>Who receives alerts — admin, agent, supplier?</li>
+      <li>Is the PoC activity feed the right model for a production audit log?</li>
+      <li>Are email digests needed, or in-app notifications only?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>9. Data, Hosting & Security</h3>
+    <ol start="40">
+      <li>Where must data be hosted — Italy/EU only, municipal cloud, vendor cloud?</li>
+      <li>GDPR constraints for guest data retention and deletion?</li>
+      <li>Integration with existing municipal systems (ERP, CRM, document archive)?</li>
+      <li>Backup, uptime, and disaster recovery expectations for MVP?</li>
+      <li>Formal security assessment required before production?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>10. MVP Scope, Timeline & Budget</h3>
+    <ol start="45">
+      <li>Which PoC features are must-have vs nice-to-have in MVP?</li>
+      <li>Is the demo flow (Airbnb → checkout → Alloggiati → dispatch) the exact MVP journey?</li>
+      <li>Target go-live date and what blocks it (procurement, APIs, legal)?</li>
+      <li>MVP for one pilot portfolio or city-wide rollout?</li>
+      <li>Budget range and contract model — fixed price, T&amp;M, phased milestones?</li>
+      <li>Who provides API credentials (Airbnb, WhatsApp Business, Alloggiati)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>11. Procurement & Governance (Public Sector)</h3>
+    <ol start="51">
+      <li>Public procurement rules (MEPA, tender, framework agreement)?</li>
+      <li>Open source acceptable, or proprietary with source code escrow?</li>
+      <li>Who owns the IP — Comune, vendor, or shared?</li>
+      <li>Accessibility (WCAG) or PA digital standards mandatory?</li>
+      <li>Documentation required at delivery — manual, API docs, training, SLA?</li>
+    </ol>
+  </div>
+
+  <div class="meeting-box">
+    <h3>Recommended Meeting Agenda</h3>
+    <ul>
+      <li><strong>Open (5 min):</strong> Questions 1–5, 45–47 — context and MVP scope</li>
+      <li><strong>Integrations (15 min):</strong> Questions 11–20, 26–30 — Airbnb, Alloggiati, WhatsApp</li>
+      <li><strong>Operations (10 min):</strong> Questions 21–25, 36–39 — timeline and alerts</li>
+      <li><strong>Constraints (10 min):</strong> Questions 40–44, 48–55 — hosting, procurement, budget</li>
+    </ul>
+  </div>
+
+  <div class="quote">
+    "This PoC proves the user experience and automation logic. These questions define which integrations, compliance rules, and operational workflows the paid MVP must implement first."
+  </div>
+</div>
+
+<!-- ITALIAN -->
+<div class="lang-section">
+  <div class="lang-header">
+    <h2>🇮🇹 Italiano</h2>
+    <p>Domande da chiarire con il cliente prima di definire lo scope dell'MVP a pagamento</p>
+  </div>
+
+  <div class="intro">
+    <strong>Scopo:</strong> Questo PoC dimostra l'esperienza utente e la logica di automazione. Queste domande definiscono quali integrazioni, regole di conformità e flussi operativi l'MVP a pagamento deve implementare per primi.
+  </div>
+
+  <div class="category">
+    <h3>1. Contesto Aziendale e Criteri di Successo</h3>
+    <ol start="1">
+      <li>Chi sono gli utenti principali quotidiani — operatori comunali, property manager, fornitori pulizie, o tutti?</li>
+      <li>Cosa deve risolvere per primo l'MVP: conformità CIN, visibilità prenotazioni, dispatch pulizie, o tutto equally?</li>
+      <li>Come appare il successo 3–6 mesi dopo il go-live?</li>
+      <li>È solo per Napoli, o un modello per altri Comuni?</li>
+      <li>Chi approva il contratto e chi firma l'accettazione dell'MVP?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>2. Proprietà e Inventario</h3>
+    <ol start="6">
+      <li>Quante proprietà gestirà l'MVP — decine, centinaia o migliaia?</li>
+      <li>Le proprietà sono del Comune, gestite da agenti, o un mix?</li>
+      <li>Il CIN è l'unico campo di conformità, o ce ne sono altri (SCIA, tassa soggiorno, antincendio)?</li>
+      <li>Chi mantiene corretti i dati CIN — proprietario, agente o il sistema?</li>
+      <li>Le proprietà hanno regole diverse (orari check-in/out, finestre pulizia)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>3. Prenotazioni e Integrazioni Canali</h3>
+    <ol start="11">
+      <li>Quali canali di prenotazione contano per l'MVP — Airbnb, Booking.com, dirette, altri?</li>
+      <li>Sincronizzazione bidirezionale (lettura + scrittura) o solo importazione nel timeline?</li>
+      <li>Quanto spesso sincronizzare — tempo reale, ogni ora, giornaliero?</li>
+      <li>Chi è la fonte di verità quando un canale e il calendario interno discordano?</li>
+      <li>Ci sono prenotazioni non-OTA da inserire manualmente?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>4. Conformità — CIN e Alloggiati Web</h3>
+    <ol start="16">
+      <li>La validazione CIN deve essere automatica via API registro nazionale, o verifica manuale per l'MVP?</li>
+      <li>L'integrazione Alloggiati Web è obbligatoria per l'MVP, o fase 2?</li>
+      <li>Chi invia i dati ospiti — il sistema automaticamente, o un operatore dopo revisione?</li>
+      <li>Cosa succede se un ospite non è registrato entro la scadenza legale?</li>
+      <li>Sono richiesti audit/reportistica (log, export Questura)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>5. Operazioni — Timeline e Turnover</h3>
+    <ol start="21">
+      <li>Il timeline unificato a 14 giorni è sufficiente, o servono viste mese/proprietà/fornitore?</li>
+      <li>Cosa definisce un turnover — ogni checkout, o solo check-in lo stesso giorno?</li>
+      <li>Quali sono gli orari standard di checkout/check-in (es. 10:00 / 15:00)?</li>
+      <li>Quanto buffer serve tra checkout e prossimo check-in per le pulizie?</li>
+      <li>I turnover same-day devono essere trattati come flusso prioritario?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>6. Fornitori Pulizie e Automazione WhatsApp</h3>
+    <ol start="26">
+      <li>Quanti fornitori pulizie al lancio?</li>
+      <li>WhatsApp è obbligatorio, o servono fallback SMS/email/telefono?</li>
+      <li>WhatsApp personale o WhatsApp Business API con template approvati?</li>
+      <li>Cosa succede se nessun fornitore accetta — retry, escalation, assegnazione manuale?</li>
+      <li>I fornitori necessitano calendari, disponibilità, prezzi o prova completamento (foto)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>7. Utenti, Ruoli e Permessi</h3>
+    <ol start="31">
+      <li>Quali ruoli servono — admin, operatore, agente, fornitore, auditor?</li>
+      <li>Gli agenti vedono solo le loro proprietà, o l'intero portafoglio comunale?</li>
+      <li>I fornitori necessitano un portale, o basta WhatsApp per l'MVP?</li>
+      <li>Supporto multilingua richiesto (italiano, inglese)?</li>
+      <li>SSO o identità municipale (SPID/CIE) richiesti per il login?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>8. Notifiche e Monitoraggio Attività</h3>
+    <ol start="36">
+      <li>Quali eventi devono generare alert — nuova prenotazione, checkout, sync fallita, lavoro rifiutato?</li>
+      <li>Chi riceve gli alert — admin, agente, fornitore?</li>
+      <li>Il feed attività del PoC è il modello giusto per un audit log di produzione?</li>
+      <li>Servono digest email, o solo notifiche in-app?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>9. Dati, Hosting e Sicurezza</h3>
+    <ol start="40">
+      <li>Dove devono essere ospitati i dati — solo Italia/UE, cloud comunale, cloud vendor?</li>
+      <li>Vincoli GDPR per conservazione e cancellazione dati ospiti?</li>
+      <li>Integrazione con sistemi comunali esistenti (ERP, CRM, archivio documenti)?</li>
+      <li>Aspettative su backup, uptime e disaster recovery per l'MVP?</li>
+      <li>Assessment di sicurezza formale richiesto prima della produzione?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>10. Scope MVP, Timeline e Budget</h3>
+    <ol start="45">
+      <li>Quali funzionalità del PoC sono must-have vs nice-to-have nell'MVP?</li>
+      <li>Il flusso demo (Airbnb → checkout → Alloggiati → dispatch) è il percorso MVP esatto?</li>
+      <li>Data target go-live e cosa la blocca (appalti, API, legal)?</li>
+      <li>MVP per un portafoglio pilota o rollout cittadino?</li>
+      <li>Range budget e modello contrattuale — prezzo fisso, T&amp;M, milestone?</li>
+      <li>Chi fornisce le credenziali API (Airbnb, WhatsApp Business, Alloggiati)?</li>
+    </ol>
+  </div>
+
+  <div class="category">
+    <h3>11. Appalti e Governance (Settore Pubblico)</h3>
+    <ol start="51">
+      <li>Regole di appalto pubblico (MEPA, gara, accordo quadro)?</li>
+      <li>Open source accettabile, o proprietario con escrow del codice sorgente?</li>
+      <li>Chi possiede la proprietà intellettuale — Comune, vendor o condivisa?</li>
+      <li>Accessibilità (WCAG) o standard digitali PA obbligatori?</li>
+      <li>Documentazione richiesta alla consegna — manuale, API docs, formazione, SLA?</li>
+    </ol>
+  </div>
+
+  <div class="meeting-box">
+    <h3>Agenda Consigliata per la Riunione</h3>
+    <ul>
+      <li><strong>Apertura (5 min):</strong> Domande 1–5, 45–47 — contesto e scope MVP</li>
+      <li><strong>Integrazioni (15 min):</strong> Domande 11–20, 26–30 — Airbnb, Alloggiati, WhatsApp</li>
+      <li><strong>Operazioni (10 min):</strong> Domande 21–25, 36–39 — timeline e alert</li>
+      <li><strong>Vincoli (10 min):</strong> Domande 40–44, 48–55 — hosting, appalti, budget</li>
+    </ul>
+  </div>
+
+  <div class="quote">
+    "Questo PoC dimostra l'esperienza utente e la logica di automazione. Queste domande definiscono quali integrazioni, regole di conformità e flussi operativi l'MVP a pagamento deve implementare per primi."
+  </div>
+
+  <footer>
+    Napoli Property Management System · Customer Discovery Brief · EN / IT · v1.0 · July 2026<br/>
+    Live PoC: https://rob971.github.io/NapoliPropertyManagementSystem/
+  </footer>
+</div>
+
+</body>
+</html>
