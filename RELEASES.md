@@ -10,7 +10,7 @@ Sequential pull → merge → release log for all project PRs.
 | [#4](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/4) | `cursor/stakeholder-demo-30d9` | Stakeholder demo interactions | `658097f` | [v1.1.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.1.0) | ✅ Merged & Released |
 | [#5](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/5) | `cursor/interactive-mvp-demo-30d9` | Interactive on-demand MVP preview | `abe11b6` | [v1.2.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.2.0) | ✅ Merged & Released |
 | [#9](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/9) | `cursor/default-locale-it-30d9` | Default locale to Italian on first visit | `66c89d2` | — | ✅ Merged |
-| [#10](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/10) | `cursor/multi-tenant-abstraction-30d9` | Multi-customer tenant config and DevOps abstraction | — | [v1.4.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.4.0) | ✅ Merged & Released |
+| [#10](https://github.com/Rob971/NapoliPropertyManagementSystem/pull/10) | `cursor/multi-tenant-abstraction-30d9` | Multi-customer tenant config and DevOps abstraction | `ffcaafe` | [v1.4.0](https://github.com/Rob971/NapoliPropertyManagementSystem/releases/tag/v1.4.0) | ✅ Merged & Released |
 
 ## Live Demo
 
