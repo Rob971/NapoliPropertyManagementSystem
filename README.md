@@ -36,6 +36,8 @@ The codebase is structured so the **product core** can be forked for other custo
 - **DevOps:** parameterized GitHub/GitLab workflows (repo name drives base path)
 - **Guide:** [docs/MULTI-TENANT.md](docs/MULTI-TENANT.md) · [deploy/README.md](deploy/README.md)
 
+**Platform template repo:** [Rob971/PropertyManagementSystem](https://github.com/Rob971/PropertyManagementSystem) — fork for new customers. Publish with [scripts/publish-platform-repo.sh](scripts/publish-platform-repo.sh).
+
 ## Deploy on GitLab Pages
 
 This project is configured for **GitLab CI/CD** with automatic deployment to GitLab Pages on the default branch (`main`).

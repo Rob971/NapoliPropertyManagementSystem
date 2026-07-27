@@ -1,0 +1,48 @@
+name: Publish platform repository
+
+# Creates Rob971/PropertyManagementSystem (or custom name) from this codebase.
+# Requires repository secret: GH_PAT (personal access token with repo + admin:org scope).
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo_name:
+        description: New repository name
+        required: true
+        default: PropertyManagementSystem
+        type: string
+      org:
+        description: GitHub org or user
+        required: true
+        default: Rob971
+        type: string
+      mark_template:
+        description: Mark as GitHub template repository
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate GH_PAT secret
+        run: |
+          if [ -z "${{ secrets.GH_PAT }}" ]; then
+            echo "::error::Add repository secret GH_PAT (PAT with repo create + push scope)."
+            exit 1
+          fi
+
+      - name: Publish platform repo
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_ORG: ${{ inputs.org }}
+          GITHUB_REPO_NAME: ${{ inputs.repo_name }}
+          MARK_AS_TEMPLATE: ${{ inputs.mark_template }}
+        run: |
+          chmod +x scripts/publish-platform-repo.sh
+          ./scripts/publish-platform-repo.sh

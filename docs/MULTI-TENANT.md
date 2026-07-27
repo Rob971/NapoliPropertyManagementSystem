@@ -34,6 +34,14 @@ Files:
 
 Application code reads these in `src/config/tenant.ts`. Translations auto-interpolate `{appName}`, `{municipality}`, `{adminName}`, and `{cleanerSupplier}`.
 
+## Reference platform repository
+
+The reusable product lives in a separate GitHub repository (template for new customers):
+
+**[Rob971/PropertyManagementSystem](https://github.com/Rob971/PropertyManagementSystem)**
+
+This Napoli repo is a **reference customer implementation**. To publish or update the platform repo, see [scripts/publish-platform-repo.sh](../scripts/publish-platform-repo.sh).
+
 ## Onboarding a new customer
 
 ### 1. Create tenant config
