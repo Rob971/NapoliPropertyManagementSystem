@@ -26,10 +26,6 @@ export function resolveInitialLocale(): Locale {
   const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
   if (stored && isLocale(stored)) return stored;
 
-  const browser = navigator.language;
-  if (browser.startsWith("it")) return "it";
-  if (browser.startsWith("en")) return "en-GB";
-
   return defaultLocale;
 }
 
