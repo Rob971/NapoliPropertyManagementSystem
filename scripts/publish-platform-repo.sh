@@ -56,6 +56,13 @@ sed -i "s/vars.TENANT_ID || 'napoli'/vars.TENANT_ID || 'default'/" "$WORK/.githu
 
 cd "$WORK"
 git init -b main
+
+# CI runners and fresh machines may have no git identity configured
+GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-github-actions[bot]}"
+GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
+git config user.name "$GIT_AUTHOR_NAME"
+git config user.email "$GIT_AUTHOR_EMAIL"
+
 git add -A
 git commit -m "Initial release: Italian municipal PMS platform
 
@@ -81,7 +88,8 @@ else
   exit 0
 fi
 
-git remote add origin "https://github.com/${FULL}.git" 2>/dev/null || git remote set-url origin "https://github.com/${FULL}.git"
+git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${FULL}.git" 2>/dev/null \
+  || git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${FULL}.git"
 git push -u origin main --force
 
 if [[ "$TEMPLATE" == "true" ]]; then

@@ -43,6 +43,8 @@ jobs:
           GITHUB_ORG: ${{ inputs.org }}
           GITHUB_REPO_NAME: ${{ inputs.repo_name }}
           MARK_AS_TEMPLATE: ${{ inputs.mark_template }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
         run: |
           chmod +x scripts/publish-platform-repo.sh
           ./scripts/publish-platform-repo.sh
